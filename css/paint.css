@@ -1,0 +1,181 @@
+/*=== 钣喷 ===*/
+.title {
+    height: 30px;
+    line-height: 30px;
+    font-weight: normal;
+    text-align: center;
+    background-color: #dbdbdb;
+}
+.paint {
+    position: relative;
+    padding: 25px;
+    border-bottom: 1px solid #dbdbdb;
+}
+.svg-source {
+    width: 100%;
+    height: 100%;
+}
+.paint .direction-label {
+    position: absolute;
+    color: #a2a2a2;
+    font-size: 12px;
+    line-height: 12px;
+}
+.paint .direction-label.top,
+.paint .direction-label.bottom {
+    left: 50%;
+    margin-left: -7px;
+}
+.paint .direction-label.top {
+    top: 10px;
+}
+.paint .direction-label.bottom {
+    bottom: 10px;
+}
+.paint .direction-label.left,
+.paint .direction-label.right {
+    top: 50%;
+    margin-top: -7px;
+}
+.paint .direction-label.left {
+    left: 10px;
+}
+.paint .direction-label.right {
+    right: 10px;
+}
+.zoom-btn {
+    display: block;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    width: 24px;
+    height: 30px;
+    background: url("../img/zoom.png") center no-repeat;
+    background-size: 24px 30px;
+}
+.zoom-btn.zoom {
+    background-image: url("../img/narrow.png");
+}
+.svg-part[name=C] {
+    transform: scale(1);
+    transform-origin: center 20%;
+    transition: transform 0.5s;
+}
+.svg-part[name=M] {
+    transform: scale(1);
+    transform-origin: center;
+    transition: transform 0.5s;
+}
+.svg-part[name=C].zoom {
+    transform: scale(1.2, 2);
+}
+.svg-part[name=M].zoom {
+    transform: scale(1.2, 2);
+}
+.svg-part[name=P],
+.svg-part[name=Q],
+.svg-part[name=S],
+.svg-part[name=V] {
+    transform: scale(1);
+    transform-origin: center;
+    transition: transform 0.5s;
+}
+.svg-part[name=P].zoom,
+.svg-part[name=Q].zoom,
+.svg-part[name=S].zoom,
+.svg-part[name=V].zoom {
+    transform: scale(2, 2.5);
+}
+.svg-part[name=O],
+.svg-part[name=N] {
+    transform: scale(1);
+    transform-origin: center;
+    transition: transform 0.5s;
+}
+.svg-part[name=O].zoom,
+.svg-part[name=N].zoom {
+    transform: scaleX(2);
+}
+.svg-part[name=R],
+.svg-part[name=U],
+.svg-part[name=T],
+.svg-part[name=W] {
+    transform: scale(1);
+    transform-origin: center;
+    transition: transform 0.5s;
+}
+.svg-part[name=R].zoom,
+.svg-part[name=U].zoom,
+.svg-part[name=T].zoom,
+.svg-part[name=W].zoom {
+    transform: scaleX(1.5);
+}
+
+/*=== 部位列表 ===*/
+.part-list {
+    padding: 5px 15px;
+}
+.part-list .col {
+    height: 30px;
+    line-height: 30px;
+}
+.metal-plate-list.part-list .col {
+    display: none;
+}
+.part-list .part-check,
+.part-list .part-check-select-all {
+    display: inline-block;
+    padding: 0 10px 0 20px;
+    background: url("../img/uncheck.png") left center no-repeat;
+    background-size: 13px 13px;
+}
+.part-list .part-check.checked,
+.part-list .part-check-select-all.checked {
+    background-image: url("../img/checked.png");
+}
+
+/*=== 钣喷页面底部 ===*/
+footer .row {
+    padding: 0;
+}
+footer .col {
+    height: 100%;
+    line-height: 40px;
+    font-size: 17px;
+}
+footer .col-70 {
+    padding-left: 15px;
+}
+footer .next-step {
+    display: block;
+    color: #fff;
+    text-align: center;
+    background-color: #ff7000;
+}
+/*=== 选择喷漆对话框 ===*/
+.paint-dialog {
+    width: 9rem;
+    height: 4rem;
+    text-align: center;
+    border-radius: 0.2rem;
+    background-color: #fff;
+}
+.paint-dialog .dialog-title {
+    height: 2rem;
+    color: #fff;
+    line-height: 2rem;
+    background-color: #ff7000;
+}
+.paint-dialog .dialog-btn-group {
+    height: 2rem;
+}
+.dialog-btn-group .dialog-btn {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 100%;
+    line-height: 2rem;
+}
+.dialog-btn-group .dialog-btn:first-child {
+    border-right: 1px solid #ff7000;
+}

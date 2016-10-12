@@ -1,0 +1,36 @@
+.content {
+    padding: 10px;
+    bottom: 0;
+    background-color: #efefef;
+}
+.illegalResult {
+    padding: 10px 10px 0 10px;
+    border-radius: 3px;
+    border: 1px solid #dbdbdb;
+    background-color: #fff;
+}
+.car-model {
+    height: 60px;
+    border-bottom: 1px solid #dbdbdb;
+}
+.car-info {
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px dashed #dbdbdb;
+}
+.illegal-item .table-col {
+    font-size: 12px;
+    line-height: 20px;
+}
+.illegal-item .table-row .table-col:first-child {
+    width: 38px;
+    color: #a2a2a2;
+    vertical-align: top;
+}
+.illegal-item {
+    padding: 10px 0;
+    border-bottom: 1px dashed #dbdbdb;
+}
+.illegal-item:last-child {
+    border-bottom: none;
+}

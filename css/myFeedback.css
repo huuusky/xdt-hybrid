@@ -1,0 +1,58 @@
+/*=== 用户信息 ===*/
+.user-info {
+    background-color: #ff7000;
+}
+.user-info .table-col {
+    height: 110px;
+    color: #fff;
+    line-height: 18px;
+}
+.user-info .score {
+    display: inline-block;
+    padding: 0 10px;
+    height: 16px;
+    font-size: 12px;
+    line-height: 16px;
+    color: #ff7000;
+    border-radius: 3px;
+    background-color: #fff;
+}
+.blank {
+    height: 10px;
+    background-color: #efefef;
+}
+/*=== 评价 ===*/
+.feedback-page .content {
+    top: 140px;
+    bottom: 0;
+    /*background-color: #efefef;*/
+}
+.feedback-count {
+    padding: 0 10px;
+    height: 30px;
+    font-size: 12px;
+    line-height: 30px;
+    background-color: #dbdbdb;
+}
+.feedback-list {
+    padding: 15px 10px 0 10px;
+    font-size: 12px;
+}
+.feedback {
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px 3px 0 0;
+    overflow: hidden;
+}
+.feedback-title {
+    height: 20px;
+    line-height: 20px;
+    background-color: #dbdbdb;
+}
+.score-desc, .feedback-time {
+    color: #a2a2a2;
+}
+.feedback-content {
+    padding: 5px 10px;
+}

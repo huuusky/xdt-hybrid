@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>我的评价</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/myFeedback.css">
+</head>
+<body>
+<!-- 技师端评价页面 -->
+<div class="feedback-page page">
+    <header>
+        <!-- 用户信息 -->
+        <div class="user-info table">
+            <div class="table-row">
+                <div class="table-col align-h-center">
+                    <img id="adviserHead" src="img/adviser_default.png" width="80" alt="">
+                </div>
+                <div class="table-col">
+                    <p>
+                        <img src="img/gold_medal.png" width="16" alt="">
+                    </p>
+                    <p id="userName">诸葛亮亮</p>
+                    <p >已接单：<span id="receivedOrder">12815</span></p>
+                    <div class="score">
+                        <img id="ratinImage" class="align-v-middle" src="img/star_45.png" width="64" alt="">
+                        <span id="ratingStars" class="align-v-middle">3.5分</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="feedback-count">
+            评价详情 （<span id="feedbackNumber">56</span>条）
+        </div>
+    </header>
+    <section class="content">
+        <!-- 评价 -->
+        <div id="feedbackList" class="feedback-list">
+            <!-- 数据动态生成 -->
+            <!--<div class="feedback">
+                <div class="feedback-title plr10">
+                <span class="fr">
+                    <span class="score-desc">技术水平评分：</span>
+                    <span class="score price">4.0</span>
+                </span>
+                    <span>158****0742</span>
+                </div>
+                <div class="feedback-content p10">
+                    <p>壳子做工很好，就是没设计wifi按键口子不太合理，里面略微隆起，具体哪不清楚，放的时候有台阶感，底座不太能旋紧，材质关系，所以要用扳手。</p>
+                    <p class="feedback-time fr">2016-01-15 14:25:36</p>
+                </div>
+            </div>-->
+        </div>
+        <!-- 加载更多 -->
+        <div id="loadMore" class="load-more align-h-center">
+            <a id="loadMoreBtn" class="load-more-btn highlight" href="javascript:;">点击加载更多</a>
+            <p id="loadMoreProcess" class="load-more-process">
+                <img class="align-v-middle" src="img/loading.gif" width="16" alt="">
+                <span class="align-v-middle">正在加载...</span>
+            </p>
+        </div>
+    </section>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/touch.js"></script>
+<script>
+    var feedbackData = JSON.parse(window.fromAndroid.feedbackData());//我的评价数据
+    var page = 0;//评论初始页数
+    var $feedbackList = $("#feedbackList");//评论列表
+    var $loadMore = $("#loadMore");//加载更多
+    var $loadMoreBtn = $("#loadMoreBtn");//加载更多按钮
+    var $loadMoreProcess = $("#loadMoreProcess");//正在加载提示
+    //初始化评论列表数据
+    (function (data) {
+        $("#adviserHead").attr("src", data.employee.image);//用户头像
+        $("#userName").text(data.employee.name || " ");//用户名
+        $("#receivedOrder").text(data.employee.servedCount || " ");//已接单
+        $("#ratingStars").text(data.employee.ratingStars.toFixed(1) + "分");//评分数
+        $("#feedbackNumber").text(data.count || "0");//评价总数
+
+        createFeedback(data);//生成页面评价内容
+    })(feedbackData);
+    //点击【加载更多】按钮，传入页码请求数据
+    $loadMoreBtn.on("tap", function () {
+        $loadMoreBtn.hide();
+        $loadMoreProcess.show();
+
+        page++;//页码加1
+        window.fromAndroid.loadMore(page);//调用Android方法加载数据
+    });
+    //更新页面内容,Android调用此方法更新页面数据
+    function updateContent(data) {
+        $loadMoreBtn.show();
+        $loadMoreProcess.hide();
+        createFeedback(data);
+    }
+    //生成页面评价内容
+    function createFeedback(data) {
+        page = data.currentPage;//当前数据页码
+        //根据角色生成评论描述
+        var roleScoreDesc = data.employee.roleType == 1 ? "服务水平评分" : "技术水平评分";
+        //遍历评论列表
+        if (data.evaluationList.length > 0) {
+            $.each(data.evaluationList, function (index, item) {
+                //根据角色生成评论生成
+                var _roleScore = data.employee.roleType == 1 ? item.serviceScore : item.technologyScore;
+                //替换手机号码中间4位为*号，如133****4285
+                var _phoneNumber = item.operator.replace(/(\d{3})\d{4}(\d{4})/, "$1****$2");
+                //生成评论项并添加
+                $('<div class="feedback"><div class="feedback-title plr10">' +
+                        '<span class="fr"><span class="score-desc">' + roleScoreDesc + '：</span><span class="score price">' + _roleScore.toFixed(1) + '</span>' +
+                        '</span><span>' + _phoneNumber + '</span>' +
+                        '</div><div class="feedback-content p10">' +
+                        '<p>' + item.comments + '</p>' +
+                        '<p class="feedback-time fr">' + item.createDate + '</p>' +
+                        '</div></div>').appendTo($feedbackList);
+            });
+        } else {
+            $loadMoreBtn.text("无更多评论");
+        }
+    }
+</script>
+</body>
+</html>

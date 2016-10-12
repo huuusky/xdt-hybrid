@@ -1,0 +1,28 @@
+.content {
+    bottom: 0;
+    background-color: #efefef;
+}
+.income-desc .income-statistics, .income-desc .income-rank {
+    height: 80px;
+    text-align: center;
+    vertical-align: middle;
+    border-bottom: 1px solid #dbdbdb;
+}
+.income-desc .income-statistics {
+    border-right: 1px solid #dbdbdb;
+}
+.income-desc .large-text {
+    font-size: 25px;
+}
+.income-chart .doughnut-chart {
+    display: inline-block;
+    padding: 10px 0;
+    text-align: center;
+}
+.income-chart .table-col {
+    text-align: center;
+}
+circle {
+    -webkit-transition: stroke-dasharray 0.25s;
+    transition: stroke-dasharray 0.25s;
+}

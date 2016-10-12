@@ -1,0 +1,109 @@
+.page header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: #efefef;
+    z-index: 10;
+}
+.content {
+    top: 50px;
+    bottom: 60px;
+    background-color: #efefef;
+}
+.order-item {
+    position: relative;
+    padding: 5px 20px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    line-height: 22px;
+    background-color: #fff;
+}
+.order-item .item-title {
+    font-weight: bold;
+}
+.order-item-label {
+    width: 60px;
+    vertical-align: top;
+}
+.service-table .order-item-label {
+    width: 80px;
+}
+.order-item .item-desc {
+    color: #a2a2a2;
+}
+.order-item .service-code {
+    display: none;
+}
+.order-item:before {
+    position: absolute;
+    display: block;
+    top: 11px;
+    left: 8px;
+    content: " ";
+    width: 7px;
+    height: 7px;
+    -webkit-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+    border: 1px solid #ff7000;
+}
+.page footer {
+    padding: 10px;
+    height: 60px;
+    background-color: #efefef;
+}
+/*=== 按钮 ===*/
+header .tel {
+    display: inline-block;
+    width: 180px;
+    height: 40px;
+    line-height: 40px;
+    color: #ff7000;
+}
+footer .pay-btn {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    font-size: 17px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #ff7000;
+}
+/*=== 已支付 ===*/
+.page.hasPaid footer {
+    display: none;
+}
+.page.hasPaid .content {
+    bottom: 0;
+}
+/*=== 服务网点 ===*/
+.service-network {
+    position: relative;
+    padding: 10px;
+    font-size: 12px;
+    background-color: #fff;
+}
+.service-network-title {
+    padding-left: 10px;
+    font-weight: bold;
+}
+.service-network:before {
+    position: absolute;
+    display: block;
+    top: 15px;
+    left: 8px;
+    content: " ";
+    width: 7px;
+    height: 7px;
+    -webkit-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+    border: 1px solid #ff7000;
+}
+.service-network .network-name {
+    margin-left: 10px;
+}
+.service-network .network-address {
+    margin-left: 20px;
+    color: #a2a2a2;
+}

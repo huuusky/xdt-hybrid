@@ -1,0 +1,38 @@
+.content {
+    bottom: 50px;
+    background-color: #c72147;
+}
+footer {
+    height: 50px;
+    background-color: #c72147;
+}
+/*=== 活动详情 ===*/
+.activity-img {
+    width: 100%;
+    vertical-align: top;
+}
+.activity-desc {
+    padding: 0 20px;
+}
+.activity-desc-text {
+    text-indent: 2em;
+    color: #ffffff;
+    font-size: 12px;
+    line-height: 20px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.activity-action {
+    padding: 0 20px;
+}
+.activity-btn {
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    text-align: center;
+    color: #fff;
+    background-color: #f5bb1b;
+    border-radius: 5px;
+}

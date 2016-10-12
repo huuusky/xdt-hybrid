@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>订单填写</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/order.css">
+</head>
+<body>
+<!-- 订单填写页面 -->
+<div class="order-page page">
+    <section id="content" class="content">
+        <!-- 商家信息 -->
+        <div class="merchant-info">
+            <div class="merchant-name">
+                商家：<span id="shopName"></span>
+            </div>
+            <div class="merchant-addr table">
+                <div class="table-row">
+                    <div class="table-col align-v-top">地址：</div>
+                    <div id="address" class="table-col align-v-top"></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-col align-v-top">电话：</div>
+                    <div id="telephone" class="table-col align-v-top"></div>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <!-- 已选订单服务项目 -->
+        <div class="card service">
+            <div class="card-title">服务项目</div>
+            <div class="card-content plr10">
+                <div id="serviceTable" class="table">
+                    <!-- 数据动态创建 -->
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <!-- 推荐服务 -->
+        <div id="recommendedService" class="card recommended">
+            <div class="card-title">
+                <a id="recommendedServiceBtn" class="highlight recommended-service-btn" href="javascript:;">
+                    <span class="expand-icon fr"></span><span>本店其他服务</span>
+                </a>
+            </div>
+            <div id="recommendedCardContent" class="card-content">
+                <div id="recommendedTable" class="recommended-table table">
+                    <!-- 数据动态创建 -->
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <!-- 上门接车 -->
+        <div id="pickUpCar" class="card pickup-service">
+            <a class="highlight" href="javascript:;">
+                <div class="card-title">
+                    <div class="fr">
+                        <span id="pickupPrice" class="price"></span>
+                        <div id="pickupSwitch" class="pickup-switch">
+                            <span class="outside-circle">
+                                <span class="circle"></span>
+                            </span>
+                        </div>
+                    </div>
+                    上门接车
+                </div>
+            </a>
+        </div>
+        <div class="divider"></div>
+        <div class="card-group">
+            <!-- 预约时间 -->
+            <div id="appointment" class="card appointment">
+                <a class="highlight" href="javascript:;">
+                    <div class="card-title">
+                        <span class="mr10 align-v-middle">预约时间</span>
+                        <span id="appointmentTime" class="appointment-time align-v-middle">请选择预约时间</span>
+                    </div>
+                </a>
+            </div>
+            <!-- 优惠券 -->
+            <div class="card choose-coupon">
+                <a id="chooseCoupon" class="highlight" href="javascript:;">
+                    <div class="card-title">
+                        <span id="couponValue" class="coupon-price">-0元</span>
+                        <span>优惠券</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <!-- 联系人信息 -->
+        <div id="userInfo" class="user-info table">
+            <div class="table-row">
+                <div class="table-col align-h-center">
+                    <span class="form-label">联系人</span>
+                </div>
+                <div class="table-col">
+                    <input id="contactsName" class="form-input" name="userName" placeholder="请输入姓名" type="text"/>
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="table-col align-h-center">
+                    <span class="form-label">电&nbsp;&nbsp;&nbsp;&nbsp;话</span>
+                </div>
+                <div class="table-col">
+                    <input id="contactsPhone" class="form-input" name="tel" placeholder="请输入11位手机号" type="text"/>
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="table-col align-h-center">
+                    <span class="form-label">车牌号</span>
+                </div>
+                <div class="table-col">
+                    <input id="carLicenseNumber" class="form-input" name="car-number" placeholder="请输入车牌号码" type="text"/>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="row">
+            <div class="col col-70">
+                结算金额：<span id="totalPrice" class="price">0元</span>
+            </div>
+            <div class="col col-30">
+                <a id="submitOrder" class="submit-order highlight" href="javascript:;">提交订单</a>
+            </div>
+        </div>
+    </footer>
+    <!-- 优惠详情弹出框 -->
+    <div id="preferentialDialog" class="modal-layer">
+        <div class="preferential-dialog modal-dialog">
+            <div id="preferentialDialogContent" class="preferential-dialog-content">
+                <!-- 时间轴 -->
+                <div id="timeline" class="timeline">
+                    <a id="scrollLeftBtn" class="scrollLeft scroll-btn" href="javascript:;">
+                        <span class="scroll-left-triangle scroll-triangle"></span>
+                    </a>
+                    <a id="scrollRightBtn" class="scrollRight scroll-btn" href="javascript:;">
+                        <span class="scroll-right-triangle scroll-triangle"></span>
+                    </a>
+                    <ul id="timelineBox" class="timeline-box clearfix">
+                        <li class="timeline-item">
+                            <a class="timeline-link yesterday" href="javascript:;">
+                                <p class="month-day"></p>
+                                <p class="day-of-week"></p>
+                            </a>
+                        </li>
+                        <li class="timeline-item">
+                            <a class="timeline-link" href="javascript:;">
+                                <p class="month-day"></p>
+                                <p class="day-of-week"></p>
+                            </a>
+                        </li>
+                        <li class="timeline-item">
+                            <a class="timeline-link" href="javascript:;">
+                                <p class="month-day"></p>
+                                <p class="day-of-week"></p>
+                            </a>
+                        </li>
+                        <li class="timeline-item">
+                            <a class="timeline-link" href="javascript:;">
+                                <p class="month-day"></p>
+                                <p class="day-of-week"></p>
+                            </a>
+                        </li>
+                        <li class="timeline-item">
+                            <a class="timeline-link" href="javascript:;">
+                                <p class="month-day"></p>
+                                <p class="day-of-week"></p>
+                            </a>
+                        </li>
+                        <li class="timeline-item">
+                            <a class="timeline-link" href="javascript:;">
+                                <p class="month-day"></p>
+                                <p class="day-of-week"></p>
+                            </a>
+                        </li>
+                        <li class="timeline-item">
+                            <a class="timeline-link" href="javascript:;">
+                                <p class="month-day"></p>
+                                <p class="day-of-week"></p>
+                            </a>
+                        </li>
+                        <li class="timeline-item">
+                            <a class="timeline-link" href="javascript:;">
+                                <p class="month-day"></p>
+                                <p class="day-of-week"></p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 优惠信息列表 -->
+                <div id="preferentialList" class="preferential-list">
+                    <div class="table">
+                        <div class="table-row thead">
+                            <div class="table-col">到店时间</div>
+                            <div class="table-col">优惠方式</div>
+                            <div class="table-col">优惠额度</div>
+                        </div>
+                        <div id="preferentialTbody" class="table-body">
+                            <!--<div class="table-row">
+                                <div class="table-col">09:00-11.00</div>
+                                <div class="table-col">返券</div>
+                                <div class="table-col price">280元</div>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dialog-btn-group clearfix">
+                <a id="modalOK" class="ok-btn dialog-btn highlight" href="javascript:;">确 定</a>
+                <a id="modalCancel" class="cancel-btn dialog-btn highlight" href="javascript:;">取 消</a>
+            </div>
+        </div>
+    </div>
+    <!-- 优惠券弹出框 -->
+    <div id="couponDialog" class="modal-layer">
+        <div class="coupon-dialog modal-dialog">
+            <div class="coupon-dialog-wrapper">
+                <div class="coupon-dialog-title">
+                    <a id="cancelCouponBtn" class="cancel-coupon-btn highlight" href="javascript:;">取消</a>
+                    <span>选择优惠券</span>
+                </div>
+                <div id="couponDialogContent" class="coupon-dialog-content">
+                    <div class="coupon">
+                        <a class="highlight" href="javascript:;">
+                            <div class="coupon-content not-use">不使用优惠券</div>
+                        </a>
+                    </div>
+                    <!-- 数据动态创建 -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- toast提示框 -->
+    <div id="toast" class="toastWrapper">
+        <div class="toast-text"></div>
+    </div>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/touch.js"></script>
+<script src="js/timeline.js"></script>
+<script>
+    /************************** 数 据 准 备 & 全 局 变 量**************************/
+    var DAY_OF_WEEK = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+    var PARTS_MAP = {//部位字母对应名称
+        "A": "车顶",
+        "B": "前引擎盖",
+        "C": "前保险杠",
+        "D": "前翼子板右侧",
+        "E": "前翼子板左侧",
+        "F": "前车门右侧",
+        "G": "前车门左侧",
+        "H": "后车门左侧",
+        "I": "后车门右侧",
+        "J": "后翼子板右侧",
+        "K": "后翼子板左侧",
+        "L": "后车盖",
+        "M": "后保险杠",
+        "N": "右侧下裙边",
+        "O": "左侧下裙边",
+        "P": "左侧后视镜",
+        "Q": "右侧后视镜",
+        "R": "左A柱",
+        "S": "左B柱",
+        "T": "左C柱",
+        "U": "右A柱 ",
+        "V": "右B柱",
+        "W": "右C柱"
+    };
+    var preferentialData = null;//优惠详情数据
+    var orderData = null;//订单页面初始数据
+    var submitData = {//订单提交数据
+        fromType: "",
+        shopId: 0,
+        carId: 0,
+        couponId: 0,
+        couponAmount: 0,
+        contactsName: "",
+        contactsPhone: "",
+        carLicenseNumber: "",
+        appointment: "",
+        services: []
+    };
+    var totalPrice = 0;//总价格
+    var pickupService = {//上门接车
+        servicePrice: 0//上门接车价格
+    };
+    var globalCoupon = {//优惠券全局变量
+        couponId: 0,
+        amount: 0
+    };
+    var selectedServicesId = [];//已选择的服务ID
+    var validate = {//页面校验
+        contactsName: {
+            rule: "^[A-Za-z]+|[\u4e00-\u9fa5]+$",
+            errMsg: "请输入正确的联系人姓名"
+        },
+        contactsPhone: {
+            rule: "^[0-9]{11}$",
+            errMsg: "请输入正确的手机号"
+        },
+        carLicenseNumber: {
+            rule: "^[\u4e00-\u9fa5][A-Za-z][A-Za-z0-9]{5,6}$",
+            errMsg: "请输入正确的车牌号码"
+        },
+        appointment: {
+            isSelected: false,
+            errMsg: "请选择预约时间"
+        }
+    };
+    var $toast = $("#toast");
+    var toastTimeout = null;
+    var $recommendedTable = $("#recommendedTable");//推荐服务列表内容
+    var $couponValue = $("#couponValue");//优惠券金额
+    var $totalPrice = $("#totalPrice");//总价格
+
+    /************************** 获 取 订 单 数 据 & 优 惠 详 情 数 据 **************************/
+    if (window.fromiOS) {
+        preferentialData = window.fromiOS.preferentialData;
+        orderData = window.fromiOS.orderData;
+    }
+    if (window.fromAndroid) {
+        if (window.fromAndroid.preferentialData()) {
+            preferentialData = JSON.parse(window.fromAndroid.preferentialData());
+        }
+        orderData = JSON.parse(window.fromAndroid.orderData());
+    }
+
+    /************************** 初 始 化 页 面 信 息 **************************/
+    (function () {
+        $("#shopName").text(orderData.shopName || "");//商家名称
+        $("#address").text(orderData.address || "");//商家地址
+        $("#telephone").text(orderData.telephone || "");//商家电话
+        $("#contactsName").val(orderData.contactsName || "");//联系人姓名
+        $("#contactsPhone").val(orderData.contactsPhone || "");//联系人电话
+        $("#carLicenseNumber").val(orderData.carLicenseNumber || "");//联系人车牌号
+        totalPrice = orderData.servicesTotalPrice;//设置总价格
+
+        //商家没有上门接车服务则隐藏
+        var $pickupCar = $("#pickUpCar");
+        if (!orderData.hasPickupService) {
+            $pickupCar.prev().hide();
+            $pickupCar.hide();
+        }
+        //创建优惠券
+        createCoupons(orderData.coupons);
+    })();
+
+    /************************** 服 务 项 目 **************************/
+    (function () {
+        //服务列表内容
+        var $serviceTable = $("#serviceTable");
+        //创建服务项目列表
+        if (orderData.services != null) {
+            $.each(orderData.services, function (index, item) {
+                selectedServicesId.push(item.serviceId);
+                var $tableRow = $('<div class="card-content-item table-row">' +
+                    '<div class="service-item table-col col-70">' +
+                    '<h3 class="card-sub-title">' + item.attributeValue + '</h3>' +
+                    '</div><div class="table-col col-30 align-h-right align-v-middle">' +
+                    '<span class="price">' + item.servicePrice +'元</span></div>' +
+                '</div>');
+                var $serviceItem = $tableRow.find(".service-item");
+                var partDescArr = [];
+                if (item.attributeDescArray != null) {
+                    $.each(item.attributeDescArray, function (idx, ele) {
+                        $('<p class="part">• ' + PARTS_MAP[ele] + '</p>').appendTo($serviceItem);
+                        partDescArr.push(PARTS_MAP[ele]);
+                    });
+                }
+                $serviceTable.append($tableRow);
+                //初始化订单提交信息中的服务项目并添加到提交数据中
+                var submitServiceItem = {
+                    serviceId: item.serviceId,
+                    attributeValue: item.attributeValue,
+                    attributeDesc: partDescArr.join(","),
+                    servicePrice: item.servicePrice,
+                    pickupAddress: item.pickupAddress,
+                    pickupTime: item.pickupTime
+                };
+                submitData.services.push(submitServiceItem);
+            });
+            //设置默认的优惠券
+            if (orderData.coupons != null) {
+                var _coupons = screeningCoupons(selectedServicesId, orderData.coupons);
+                showSelectedServiceCoupons(_coupons);
+                if (_coupons.length > 0) {
+                    globalCoupon.couponId = _coupons[0].couponId;
+                    globalCoupon.amount = _coupons[0].amount;
+                } else {
+                    globalCoupon.couponId = null;
+                    globalCoupon.amount = 0;
+                }
+            } else {
+                globalCoupon.couponId = null;
+                globalCoupon.amount = 0;
+            }
+            //初始化订单总价格
+            setTotalPrice((totalPrice + pickupService.servicePrice - globalCoupon.amount).toFixed(2));
+            //默认显示的优惠券价格
+            setCouponValue(globalCoupon.amount);
+        }
+    })();
+
+    /************************** 推 荐 服 务 **************************/
+    (function () {
+        //创建推荐服务列表
+        if (orderData.recommendServices != null && orderData.recommendServices.length > 0) {
+            $.each(orderData.recommendServices, function (index, item) {
+                $('<div class="card-content-item table-row">' +
+                    '<div class="table-col col-20 align-h-center">' +
+                        '<a class="recommended-check" href="javascript:;"></a>' +
+                    '</div>' +
+                    '<div class="table-col col-50">' +
+                        '<h3 class="card-sub-title">' + item.attributeValue + '</h3>' +
+                        '<p class="part">' + (item.attributeDesc || "&nbsp;") + '</p>' +
+                    '</div>' +
+                    '<div class="table-col col-30 align-h-right">' +
+                        '<span class="price">' + item.servicePrice + '元</span>' +
+                        //'<a class="recommended-check" href="javascript:;">是否需要</a>' +
+                    '</div>' +
+                '</div>', {
+                    "service-id": item.serviceId,
+                    "service-price": item.servicePrice
+                }).appendTo($recommendedTable);
+            });
+            var recommendedTableHeight = $recommendedTable.height();
+            $recommendedTable.css("margin-top", "-" + recommendedTableHeight + "px");
+
+            //点击【推荐服务展开按钮】
+            $("#recommendedServiceBtn").on("tap", function () {
+                var $this = $(this);
+                $this.toggleClass("expanded");
+                if ($this.hasClass("expanded")) {
+                    $recommendedTable.css("margin-top", 0);
+                } else {
+                    $recommendedTable.css("margin-top", "-" + recommendedTableHeight + "px");
+                }
+            });
+            //点击【推荐服务项checkbox】
+            $recommendedTable.on("tap", ".card-content-item", function () {
+                var $this = $(this);
+                var _servicePrice = parseFloat($this.attr("service-price"));
+                var _serviceId = parseInt($this.attr("service-id"));
+                $this.toggleClass("checked");
+                //计算&设置总价格
+                if ($this.hasClass("checked")) {
+                    totalPrice = totalPrice + _servicePrice;
+                    selectedServicesId.push(_serviceId);
+                } else {
+                    totalPrice = totalPrice - _servicePrice;
+                    selectedServicesId.splice(selectedServicesId.indexOf(_serviceId), 1)
+                }
+                //筛选出符合条件的优惠券
+                var _couponsList = screeningCoupons(selectedServicesId, orderData.coupons);
+                //点击推荐服务后显示对应的面额最大的优惠券
+                if (_couponsList.length > 0) {
+                    globalCoupon.couponId = _couponsList[0].couponId;
+                    globalCoupon.amount = _couponsList[0].amount;
+                } else {
+                    globalCoupon.couponId = null;
+                    globalCoupon.amount = 0;
+                }
+                setCouponValue(globalCoupon.amount);
+                setTotalPrice((totalPrice + pickupService.servicePrice - globalCoupon.amount).toFixed(2));
+                //显示符合条件的优惠券
+                showSelectedServiceCoupons(_couponsList);
+            });
+        } else {
+            $("#recommendedService").hide();
+        }
+    })();
+
+    /************************** 上 门 接 车 **************************/
+    //点击【上门接车按钮】
+    $("#pickUpCar").on("tap", function () {
+        if (window.fromiOS) {
+            gotoPickUpCar();
+        }
+        if (window.fromAndroid) {
+            window.fromAndroid.gotoPickUpCar();
+        }
+    });
+    //更新上门接车数据
+    var $pickupPrice = $("#pickupPrice");
+    var $pickupSwitch = $("#pickupSwitch");
+    function updatePickUpCarData(hasPickUp, pickUpCarData) {
+        if (hasPickUp) {//true
+            pickupService = {
+                serviceId: pickUpCarData.pickupServiceId || orderData.pickupServiceId,
+                attributeValue: "上门接车",
+                servicePrice: pickUpCarData.servicePrice,
+                pickupTime: pickUpCarData.pickupTime,
+                pickupAddress: pickUpCarData.pickupAddress,
+                sendAddress: pickUpCarData.sendAddress,
+                city: pickUpCarData.city
+            };
+            //alert(JSON.stringify(submitData.pickupService));
+            $pickupSwitch.addClass("active");
+            $pickupPrice.text("￥" + pickUpCarData.servicePrice).show();
+        } else {
+            pickupService = {
+                servicePrice: 0
+            };
+            $pickupSwitch.removeClass("active");
+            $pickupPrice.text("￥0").hide();
+        }
+    }
+    //修正点击输入框时，输入法会遮住的问题
+    var $content = $("#content");
+    $("#userInfo").on("tap", ".form-input", function () {
+        var contentTop = $content.scrollTop();
+        var contentHeight = $content.offset().height;
+        setTimeout(function () {
+            if (contentTop == 0) {
+                var contentCurrentHeight = $content.offset().height;
+                $content.scrollTop(contentHeight - contentCurrentHeight);
+            }
+        }, 300);
+    });
+
+    //阻止优惠详情和优惠券弹出框冒泡事件
+    $(".modal-dialog").on("tap", function (e) {
+        e.stopPropagation();
+    });
+
+    /************************** 优 惠 详 情 **************************/
+    (function () {
+        var $preferentialDialog = $("#preferentialDialog");
+        var $preferentialTbody = $("#preferentialTbody");
+        if (preferentialData != null) {
+            //初始化优惠详情数据
+            $("#timeline").timeline({
+                today: preferentialData.today, //[2016, 0, 22]
+                updateFn: function (dayOfWeek) {
+                    var selectDay = preferentialData.promotionWeekPlans[dayOfWeek];
+                    var dayPreferential = selectDay.promotionDayPlans;
+                    $preferentialTbody.empty();//先清空表格内容再添加
+                    for (var i = 0; i < dayPreferential.length; i++) {
+                        var item = dayPreferential[i];
+                        //动态创建并添加到表格中
+                        if (i === 0) {//默认选中第一个
+                            $('<div class="table-row selected"><div class="table-col">' + item.timePeriod
+                                    + '</div><div class="table-col">' + item.promotionTypeName
+                                    + '</div><div class="table-col price">' + item.promotionValue + '</div></div>', {
+                                "appointment-date": selectDay.currentDate,
+                                "appointment-time": item.timePeriod,
+                                "day-of-week": selectDay.dayOfWeek
+                            }).appendTo($preferentialTbody);
+                        } else {
+                            $('<div class="table-row"><div class="table-col">' + item.timePeriod
+                                    + '</div><div class="table-col">' + item.promotionTypeName
+                                    + '</div><div class="table-col price">' + item.promotionValue + '</div></div>', {
+                                "appointment-date": selectDay.currentDate,
+                                "appointment-time": item.timePeriod,
+                                "day-of-week": selectDay.dayOfWeek
+                            }).appendTo($preferentialTbody);
+                        }
+                    }
+                }
+            });
+            //点击【预约时间】
+            $("#appointment").on("tap", function () {
+                $preferentialDialog.show();
+                $("#userInfo .form-input").blur();
+            });
+            //选择优惠时间段
+            $preferentialTbody.on("tap", ".table-row", function () {
+                $(this).addClass("selected").siblings().removeClass("selected");
+            });
+            //点击优惠详情弹出框【确定】按钮
+            $("#modalOK").on("tap", function () {
+                $preferentialDialog.hide();
+                var $selectedRow = $preferentialTbody.find(".table-row.selected");
+                var appointmentDate = $selectedRow.attr("appointment-date");
+                var dayOfWeek = DAY_OF_WEEK[parseInt($selectedRow.attr("day-of-week"))];
+                var appointmentTime = $selectedRow.attr("appointment-time");
+                $("#appointmentTime").text(appointmentDate + " " + dayOfWeek + " " + appointmentTime);
+                submitData.appointment = appointmentDate + " " + appointmentTime;//订单提交信息中的预约时间
+            });
+            //点击优惠详情弹出框【取消】按钮
+            $("#modalCancel").on("tap", function () {
+                $preferentialDialog.hide();
+            });
+            //点击优惠详情弹出框背景
+            $preferentialDialog.on("tap", function () {
+                $preferentialDialog.hide();
+            });
+        } else {
+            $("#appointment").hide();
+        }
+    })();
+
+    /************************** 优 惠 券 **************************/
+    (function () {
+        var $couponDialog = $("#couponDialog");
+        var $couponDialogContent = $("#couponDialogContent");
+        //点击【优惠券】
+        $("#chooseCoupon").on("tap", function () {
+            $couponDialog.show();
+        });
+        /*//阻止优惠券弹出框冒泡事件
+        $couponDialogContent.on("tap", function (e) {
+            e.stopPropagation();
+        });*/
+        //点击优惠券弹出框【取消】按钮
+        $("#cancelCouponBtn").on("tap", function () {
+            $couponDialog.hide();
+        });
+        //点击优惠券弹出框背景
+        $couponDialog.on("tap", function () {
+            $couponDialog.hide();
+        });
+        //点击优惠券
+        $couponDialogContent.on("tap", ".coupon", function () {
+            var $this = $(this);
+            var index = $this.index();
+            if (index === 0) {
+                globalCoupon.couponId = null;
+                globalCoupon.amount = 0;
+                $couponValue.text("未使用");
+            } else {
+                globalCoupon.couponId = $this.attr("coupon-id");
+                globalCoupon.amount = parseInt($this.attr("coupon-value"));
+                setCouponValue(globalCoupon.amount);
+            }
+            //计算&设置总价格
+            setTotalPrice((totalPrice + pickupService.servicePrice - globalCoupon.amount).toFixed(2));
+            $couponDialog.hide();
+        });
+    })();
+
+    /************************** 提 交 订 单 **************************/
+    //点击【提交订单按钮】
+    $("#submitOrder").on("tap", function(){
+        //debugger;
+        //校验联系人姓名
+        var contactsName = $("#contactsName").val();
+        //console.log(contactsName, "----", new RegExp(validate.contactsName.rule).test(contactsName))
+
+        if (new RegExp(validate.contactsName.rule).test(contactsName)) {
+            submitData.contactsName = contactsName;
+        } else {
+            toast(validate.contactsName.errMsg);
+            return;
+        }
+        //校验联系人电话
+        var contactsPhone = $("#contactsPhone").val();
+        //console.log(contactsPhone, "----", new RegExp(validate.contactsPhone.rule).test(contactsPhone))
+        if (new RegExp(validate.contactsPhone.rule).test(contactsPhone)) {
+            submitData.contactsPhone = contactsPhone;
+        } else {
+            toast(validate.contactsPhone.errMsg);
+            return;
+        }
+        //校验车牌号
+        var carLicenseNumber = $("#carLicenseNumber").val();
+        //console.log(carLicenseNumber, "----", new RegExp(validate.carLicenseNumber.rule).test(carLicenseNumber))
+        if (new RegExp(validate.carLicenseNumber.rule).test(carLicenseNumber)) {
+            submitData.carLicenseNumber = carLicenseNumber;
+        } else {
+            toast(validate.carLicenseNumber.errMsg);
+            return;
+        }
+        /*//是否选择预约时间
+        if (!validate.appointment.isSelected) {
+            toast(validate.appointment.errMsg);
+            return;
+        }*/
+        //准备订单提交数据
+        prepareSubmitData();
+        //alert(JSON.stringify(submitData));
+        console.log(JSON.stringify(submitData));
+        //调用iOS或Android提交方法，传入订单数据
+        if (window.fromiOS) {
+            submitOrder(JSON.stringify(submitData));
+        }
+        if (window.fromAndroid) {
+            window.fromAndroid.submitOrder(JSON.stringify(submitData));
+        }
+    });
+
+    /************************** 供 以 上 代 码 块 调 用 方 法 **************************/
+    //设置总价格
+    function setTotalPrice(price) {
+        $("#totalPrice").text(price);
+    }
+    //更新总价格
+    function setCouponValue(couponValue) {
+        if (couponValue > 0) {
+            $couponValue.text("-" + couponValue + "元").show();
+        } else {
+            $couponValue.hide();
+        }
+    }
+    //创建优惠券数据
+    function createCoupons(couponList) {
+        var $couponDialogContent = $("#couponDialogContent");
+        if (couponList != null && couponList.length > 0) {
+            $.each(couponList, function (index, item) {
+                var _couponDescStr = "";
+                if (item.limitMoney != null) {
+                    _couponDescStr = "满" + item.limitMoney + "元减" + item.amount + "元";
+                } else {
+                    _couponDescStr = "无条件使用";
+                }
+                $('<div class="coupon"><a class="highlight" href="javascript:;">' +
+                    '<div class="coupon-content table"><div class="table-row">' +
+                    '<div class="coupon-price table-col col-30">¥<strong>' + item.amount + '</strong></div>' +
+                    '<div class="coupon-desc table-col col-70">' +
+                    '<p class="title">' + item.title + '</p><p>' + _couponDescStr + '</p>' +
+                    '<p>有效期至' + item.expireDate + '</p></div></div></div>' +
+                '</a></div>', {
+                    "coupon-id": item.couponId,
+                    "coupon-value": item.amount
+                }).appendTo($couponDialogContent);
+            });
+        } else {
+            $couponDialogContent.html("<div style='text-align:center;'>无可用优惠券</div>");
+        }
+    }
+    //筛选符合条件的优惠券
+    function screeningCoupons(serviceIdArr, couponList) {
+        //筛选包含推荐服务ID的优惠券
+        if (serviceIdArr.length > 0) {
+            var _coupons = [];
+            serviceIdArr.forEach(function (serviceId) {
+                var _arr = couponList.filter(function (coupon) {
+                    //通用优惠券||服务对应的优惠券
+                    return  coupon.targetService[0] == 0 || coupon.targetService.indexOf(serviceId) != -1;
+                });
+                _coupons = _coupons.concat(_arr);
+            });
+            //去重
+            _coupons = _coupons.filter(function (item, pos, self) {
+                return self.indexOf(item) == pos;
+            });
+            //按照优惠券价格从高到低排序
+            _coupons.sort(function (a, b) {
+                return b.amount - a.amount;
+            });
+            return _coupons;
+        } else {
+            return couponList;
+        }
+    }
+    //显示符合条件的优惠券
+    function showSelectedServiceCoupons(couponsList) {
+        var $coupons = $(".coupon").slice(1);
+        if (couponsList.length > 0) {
+            $coupons.show();
+            var _selectConditionArr = [];
+            couponsList.forEach(function (item) {
+                _selectConditionArr.push('[coupon-id="' + item.couponId + '"]');
+            });
+            var _selectConditionStr = _selectConditionArr.join(",");
+            $coupons.not(_selectConditionStr).hide();
+        } else {
+            $coupons.hide();
+        }
+    }
+    //准备订单提交数据
+    function prepareSubmitData() {
+        submitData.fromType = orderData.fromType;
+        //订单提交信息中的商家ID & 车型ID
+        submitData.shopId = orderData.shopId;
+        submitData.carId = orderData.carId;
+        //上门接车数据
+        if (pickupService.servicePrice != 0) {
+            submitData.services.push(pickupService);
+        }
+        //获取联系人信息
+        /*在校验中获取
+        submitData.contactsName = $("#contactsName").val();
+        submitData.contactsPhone = $("#contactsPhone").val();
+        submitData.carLicenseNumber = $("#carLicenseNumber").val();*/
+        //获取优惠券价格
+        submitData.couponId = globalCoupon.couponId;
+        submitData.couponAmount = globalCoupon.amount;
+        //获取选择的推荐服务
+        $.each($recommendedTable.find(".checked"), function () {
+            //将选中的推荐服务添加到订单提交数据中
+            var index = $(this).index();
+            submitData.services.push(orderData.recommendServices[index]);
+        });
+    }
+    //提示框
+    function toast(text) {
+        $toast.children().text(text);
+        $toast.show();
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(function () {
+            $toast.hide();
+        }, 2000);
+    }
+</script>
+</body>
+</html>

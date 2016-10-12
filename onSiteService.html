@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>上门接车</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/onSiteService.css">
+</head>
+<body>
+<!-- 上门接车页面 -->
+<div class="on-site-page page">
+    <div class="clearfix">
+        <a class="fr" href="javascript:;">代驾服务说明</a>
+    </div>
+    <!-- 上门接车表单 -->
+    <div class="on-site-form">
+        <div class="form-item table">
+            <div class="table-row">
+                <div class="table-col col-30">
+                    <span class="form-label">联 系 人：</span>
+                </div>
+                <div class="table-col col-70">
+                    <input class="form-input" name="userName" placeholder="请输入姓名" type="text"/>
+                </div>
+            </div>
+        </div>
+        <div class="form-item table">
+            <div class="table-row">
+                <div class="table-col col-30">
+                    <span class="form-label">电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：</span>
+                </div>
+                <div class="table-col col-70">
+                    <input class="form-input" name="tel" type="text"/>
+                </div>
+            </div>
+        </div>
+        <div class="form-item table">
+            <div class="table-row">
+                <div class="table-col col-30">
+                    <span class="form-label">市.区</span>
+                </div>
+                <div class="table-col col-70">
+                    <input class="form-input" name="address" type="text"/>
+                </div>
+            </div>
+        </div>
+        <div class="form-item table">
+            <div class="table-row">
+                <div class="table-col col-30">
+                    <span class="form-label">取车地址:</span>
+                </div>
+                <div class="table-col col-70">
+                    <input class="form-input" name="takeAddress" placeholder="请输入详细地址" type="text"/>
+                </div>
+            </div>
+        </div>
+        <div class="form-item table">
+            <div class="table-row">
+                <div class="table-col col-30">
+                    <span class="form-label">取车时间:</span>
+                </div>
+                <div class="table-col col-70">
+                    <input class="form-input" name="takeTime" type="text"/>
+                </div>
+            </div>
+        </div>
+        <div class="radio-btn-group">
+            <a class="radio-btn checked" href="javascript:;">取车同送车地址</a>
+            <a class="radio-btn" href="javascript:;">其他地址</a>
+        </div>
+        <div id="sendAddressFormItem" class="form-item table">
+            <div class="table-row">
+                <div class="table-col col-30">
+                    <span class="form-label">送车地址:</span>
+                </div>
+                <div class="table-col col-70">
+                    <input class="form-input" name="sendAddress" placeholder="请输入详细地址" type="text"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/zepto.min.js"></script>
+</body>
+</html>

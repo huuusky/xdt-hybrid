@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>预约详情</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/appointmentDetail.css">
+</head>
+<body>
+<!-- 预约详情页面 -->
+<div id="appointmentDetailPage" class="appointment-detail-page page">
+    <section class="content">
+        <div class="order-item">
+            <p class="item-title">预约信息</p>
+            <div class="table">
+                <div class="table-row">
+                    <div class="table-col order-item-label">预约单号：</div>
+                    <div id="orderNumber" class="table-col"></div>
+                </div>
+                <div class="service-code table-row">
+                    <div class="table-col order-item-label">预约时间：</div>
+                    <div id="appointTime" class="table-col"></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-col order-item-label">顾&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;问：</div>
+                    <div id="adviserName" class="table-col"></div>
+                </div>
+            </div>
+        </div>
+        <div class="order-item">
+            <p class="item-title">服务项目</p>
+            <div id="servicesTable" class="table">
+                <div class="table-row">
+                    <div id="serviceName" class="table-col order-item-label"></div>
+                    <div class="table-col">
+                        <span id="servicePrice" class="price"></span>元
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="order-item">
+            <p class="item-title">联系人信息</p>
+            <div class="table">
+                <div class="table-row">
+                    <div class="table-col order-item-label">车&nbsp;&nbsp;牌&nbsp;&nbsp;号：</div>
+                    <div id="carNumber" class="table-col"></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-col order-item-label">联&nbsp;&nbsp;系&nbsp;&nbsp;人：</div>
+                    <div id="contactsName" class="table-col"></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-col order-item-label">电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：</div>
+                    <div id="contactsPhone" class="table-col"></div>
+                </div>
+            </div>
+        </div>
+        <div id="carState" class="order-item">
+            <p class="item-title">车况信息</p>
+            <div class="car-state">
+                <p id="carStateDesc" class="appointment-desc"></p>
+                <p id="carStateImages">
+                    <!-- 数据动态生成 -->
+                    <!--<img class="car-state-img" src="img/car_state_01.png" width="60" alt="">-->
+                </p>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/touch.js"></script>
+<script>
+    var appointmentDetailData = {};
+
+    //获取预约详情数据
+    if (window.fromiOS) {
+        appointmentDetailData = window.fromiOS.appointmentDetailData;
+    }
+    if (window.fromAndroid) {
+        appointmentDetailData = JSON.parse(window.fromAndroid.appointmentDetailData());
+    }
+    //初始化预约详情
+    (function (data) {
+        //预约信息
+        $("#orderNumber").text(data.docNumber || "");//预约单号
+        $("#appointTime").text(data.appointmentTime || "");//预约时间
+        $("#adviserName").text(data.consultantName || "");//预约时间
+        //服务项目
+        $("#serviceName").text(data.orderProject || "");//服务项目
+        $("#servicePrice").text(data.orderProjectAmount || "");//服务项目价格
+        //联系人信息
+        $("#carNumber").text(data.carLicenseNumber || "");//车牌号
+        $("#contactsName").text(data.contactsName || "");//联系人姓名
+        $("#contactsPhone").text(data.contactsPhone || "");//联系人电话
+
+        //车况描述
+        $("#carStateDesc").text(data.remark || "");//车况备注
+        var $carStateImages = $("#carStateImages");
+        if (data.descPaths.length > 0) {
+            $.each(data.descPaths, function (index, item) {
+                if (item != null) {
+                    $('<img class="car-state-img" src="' + item + '" width="60" alt="">').appendTo($carStateImages);
+                }
+            });
+        }
+    })(appointmentDetailData);
+</script>
+</body>
+</html>

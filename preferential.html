@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>优惠详情</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/preferential.css">
+</head>
+<body>
+<!-- 优惠详情页面 -->
+<div class="preferential-page page">
+    <!-- 时间轴 -->
+    <div id="timeline" class="timeline">
+        <a id="scrollLeftBtn" class="scrollLeft scroll-btn" href="javascript:;">
+            <span class="scroll-left-triangle scroll-triangle"></span>
+        </a>
+        <a id="scrollRightBtn" class="scrollRight scroll-btn" href="javascript:;">
+            <span class="scroll-right-triangle scroll-triangle"></span>
+        </a>
+        <ul id="timelineBox" class="timeline-box clearfix">
+            <li class="timeline-item">
+                <a class="timeline-link yesterday" href="javascript:;">
+                    <p class="month-day"></p>
+                    <p class="day-of-week"></p>
+                </a>
+            </li>
+            <li class="timeline-item">
+                <a class="timeline-link" href="javascript:;">
+                    <p class="month-day"></p>
+                    <p class="day-of-week"></p>
+                </a>
+            </li>
+            <li class="timeline-item">
+                <a class="timeline-link" href="javascript:;">
+                    <p class="month-day"></p>
+                    <p class="day-of-week"></p>
+                </a>
+            </li>
+            <li class="timeline-item">
+                <a class="timeline-link" href="javascript:;">
+                    <p class="month-day"></p>
+                    <p class="day-of-week"></p>
+                </a>
+            </li>
+            <li class="timeline-item">
+                <a class="timeline-link" href="javascript:;">
+                    <p class="month-day"></p>
+                    <p class="day-of-week"></p>
+                </a>
+            </li>
+            <li class="timeline-item">
+                <a class="timeline-link" href="javascript:;">
+                    <p class="month-day"></p>
+                    <p class="day-of-week"></p>
+                </a>
+            </li>
+            <li class="timeline-item">
+                <a class="timeline-link" href="javascript:;">
+                    <p class="month-day"></p>
+                    <p class="day-of-week"></p>
+                </a>
+            </li>
+            <li class="timeline-item">
+                <a class="timeline-link" href="javascript:;">
+                    <p class="month-day"></p>
+                    <p class="day-of-week"></p>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- 商家信息 -->
+    <div class="merchant">
+        <div class="merchant-top table">
+            <div class="table-row">
+                <div class="table-col align-h-center col-30">
+                    <img id="merchantImg" class="align-v-middle" src="img/merchant.jpg" width="80" alt="">
+                </div>
+                <div class="table-col col-70">
+                    <h2 id="merchantName" class="merchant-name">一汽马自达龙华4S店</h2>
+                    <p class="support">
+                        <img id="monitor" class="support-item align-v-middle" src="img/monitor.png" width="15" alt=""/>
+                        <img id="alipay" class="support-item align-v-middle" src="img/alipay.png" width="15" alt=""/>
+                        <img id="wxpay" class="support-item align-v-middle" src="img/wxpay.png" width="15" alt=""/>
+                        <img id="unionpay" class="support-item align-v-middle" src="img/unionpay.png" width="15" alt=""/>
+                    </p>
+                    <p class="star">
+                        <img id="starImg" class="align-v-middle" src="img/star_45.png" width="64" alt=""/>
+                        <span id="starNum" class="star-num price align-v-middle">4.5</span>
+                        <!--<span class="comments align-v-middle">（<span id="comments">0</span>条）</span>-->
+                    </p>
+                    <p class="score">技术 <span id="techScore">4.8</span> 服务 <span id="serviceScore">5.0</span> 环境 <span id="envScore">4.5</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="merchant-bottom table">
+            <div class="table-row">
+                <div class="table-col col-15 align-v-middle">
+                    <a id="telLink" class="tel-link highlight" href="tel:400-172-6688"></a>
+                </div>
+                <div class="table-col col-85 align-v-middle">
+                    <p class="addr">
+                        <span class="addr-label align-v-middle">地址：</span>
+                        <span id="addrText" class="addr-text align-v-middle">深圳市龙华新区清湖市场综合楼马自达汽车4S店</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 优惠信息列表 -->
+    <div id="preferentialList" class="preferential-list">
+        <div class="table">
+            <div class="table-row thead">
+                <div class="table-col">到店时间</div>
+                <div class="table-col">优惠方式</div>
+                <div class="table-col">优惠额度</div>
+            </div>
+            <div id="preferentialTbody" class="table-body">
+                <!-- 数据动态创建 -->
+                <div class="table-row">
+                    <div class="table-col">09:00-11.00</div>
+                    <div class="table-col">返券</div>
+                    <div class="table-col price">280元</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- 下单按钮 -->
+    <div class="btn-panel">
+        <a id="gotoOrder" class="goto-order highlight" href="javascript:;">下 一 步</a>
+    </div>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/touch.js"></script>
+<script src="js/timeline.js"></script>
+<script>
+    var preferentialData = {};
+    //获取优惠详情数据
+    if (window.fromiOS) {
+        preferentialData = window.fromiOS.preferentialData;
+    }
+    if (window.fromAndroid) {
+        preferentialData = JSON.parse(window.fromAndroid.preferentialData());
+    }
+    //初始化时间轴内容，并加载当天优惠详情内容
+    if (preferentialData.promotionWeekPlans.length > 0) {
+        $("#timeline").timeline({
+            today: preferentialData.today,
+            updateFn: function (dayOfWeek) {
+                var preferentialTbody = $("#preferentialTbody");
+                var selectDay = preferentialData.promotionWeekPlans[dayOfWeek];
+                var dayPreferential = selectDay.promotionDayPlans;
+                preferentialTbody.empty();//先清空表格内容再添加
+                for (var i = 0; i < dayPreferential.length; i++) {
+                    var item = dayPreferential[i];
+                    //动态创建并添加到表格中
+                    $('<div class="table-row"><div class="table-col">' + item.timePeriod
+                        + '</div><div class="table-col">' + item.promotionTypeName
+                        + '</div><div class="table-col price">' + item.promotionValue + '</div>' +
+                    '</div>').appendTo(preferentialTbody);
+                }
+            }
+        });
+    } else {
+        $("#timeline").hide();
+        $("#preferentialList").hide();
+    }
+
+    //更新商家信息
+    (function updateMerchantInfo(data) {
+        $("#merchantName").text(data.shopName || " ");
+        $("#merchantImg").attr("src", data.defaultLogo);
+        if (data.payMethods.video) {$("#monitor").css("visibility", "visible")}//监控
+        if (data.payMethods.aliPay) {$("#alipay").css("visibility", "visible")}//支付宝
+        if (data.payMethods.weiPay) {$("#wxpay").css("visibility", "visible")}//微信支付
+        if (data.payMethods.unionPay) {$("#unionpay").css("visibility", "visible")}//银联
+        $("#starNum").text(data.evaluateScore || 0);//评价星级
+        //$("#comments").text(data.evaluateTotal || 0);//评论数
+        $("#techScore").text(data.techScore || 0);//技术分
+        $("#serviceScore").text(data.serviceScore || 0);//服务分
+        $("#envScore").text(data.envScore || 0);//环境分
+        $("#telLink").attr("href", "tel:" + data.telephone);//电话
+        $("#addrText").text(data.address || " ");
+    })(preferentialData.merchant);
+
+    //点击【去下单按钮】
+    $("#gotoOrder").on("tap", function(){
+        if (window.fromiOS) {
+            gotoOrder();
+        }
+        if (window.fromAndroid) {
+            window.fromAndroid.gotoOrder();
+        }
+    });
+</script>
+</body>
+</html>

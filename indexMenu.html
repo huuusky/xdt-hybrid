@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>首页菜单</title>
+    <style type="text/css">
+        * {
+            box-sizing: border-box;
+            -webkit-touch-callout: none;
+        }
+        .highlight {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+        }
+        /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+        html {
+            font-family: sans-serif;
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+        body {
+            margin: 0;
+        }
+        article,
+        aside,
+        details,
+        figcaption,
+        figure,
+        footer,
+        header,
+        hgroup,
+        main,
+        menu,
+        nav,
+        section,
+        summary {
+            display: block;
+        }
+        a {
+            background-color: transparent;
+        }
+        a:active,
+        a:hover {
+            outline: 0;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            padding: 0;
+            margin: 0;
+        }
+        img {
+            border: 0;
+        }
+        fieldset {
+            border: 1px solid #c0c0c0;
+            margin: 0 2px;
+            padding: 0.35em 0.625em 0.75em;
+        }
+        legend {
+            border: 0;
+            padding: 0;
+        }
+        textarea {
+            overflow: auto;
+        }
+        optgroup {
+            font-weight: bold;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        td,
+        th {
+            padding: 0;
+        }
+        body {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #5f5f5f;
+            background: #fff;
+            overflow: hidden;
+        }
+        a,
+        input,
+        textarea,
+        select,
+        button {
+            outline: 0;
+        }
+        p {
+            margin: 0;
+        }
+        a {
+            color: #5f5f5f;
+            text-decoration: none;
+        }
+        /*=== 栅格 ===*/
+        .table {
+            display: table;
+            width: 100%;
+        }
+        .table-row {
+            display: table-row;
+        }
+        .table-col {
+            display: table-cell;
+            vertical-align: middle;
+        }
+        .col-50 {
+            width: 50%;
+        }
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 40px;
+            width: 100%;
+            overflow-y: scroll;
+        }
+        .index-menu-page {
+            padding: 15px 15px 0 15px;
+        }
+        .menu .table-row .table-col {
+            padding-bottom: 15px;
+        }
+        .menu .table-row .table-col:first-child {
+            padding-right: 7.5px;
+        }
+        .menu .table-row .table-col:last-child {
+            padding-left: 7.5px;
+        }
+        .menu-item {
+            text-align: center;
+            border: 1px solid #ff7000;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .menu-btn {
+            display: block;
+            padding: 10px 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+        }
+        .menu-img {
+            height: 60px;
+            background: url("img/menu_01.png") center no-repeat;
+            background-size: 60px;
+        }
+        .menu-img02 {
+            background-image: url("img/menu_02.png");
+        }
+        .menu-img03 {
+            background-image: url("img/menu_03.png");
+        }
+        .menu-img04 {
+            background-image: url("img/menu_04.png");
+        }
+        .menu-title {
+            color: #ff7000;
+            font-size: 14px;
+            line-height: 20px;
+        }
+        .menu-desc {
+            font-size: 10px;
+            line-height: 18px;
+        }
+    </style>
+</head>
+<body>
+<!-- 首页菜单 -->
+<div class="index-menu-page page">
+    <div class="menu table">
+        <div class="table-row">
+            <div class="table-col col-50 align-v-middle">
+                <div class="menu-item">
+                    <a class="menu-btn highlight" href="xingdtApp://index/menu/appointment">
+                        <div class="menu-img menu-img01"></div>
+                        <p class="menu-title">快速预约</p>
+                        <p class="menu-desc">极速下单优先接待</p>
+                    </a>
+                </div>
+            </div>
+            <div class="table-col col-50 align-v-middle">
+                <div class="menu-item">
+                    <a class="menu-btn highlight" href="xingdtApp://index/menu/pickup">
+                        <div class="menu-img menu-img02"></div>
+                        <p class="menu-title">上门接车</p>
+                        <p class="menu-desc">足不出户王者享受</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="table-row">
+            <div class="table-col col-50 align-v-middle">
+                <div class="menu-item">
+                    <a class="menu-btn highlight" href="xingdtApp://index/menu/paint">
+                        <div class="menu-img menu-img03"></div>
+                        <p class="menu-title">快速钣喷</p>
+                        <p class="menu-desc">专业技师品质服务</p>
+                    </a>
+                </div>
+            </div>
+            <div class="table-col col-50 align-v-middle">
+                <div class="menu-item">
+                    <a class="menu-btn highlight" href="xingdtApp://index/menu/maintain">
+                        <div class="menu-img menu-img04"></div>
+                        <p class="menu-title">品质保养</p>
+                        <p class="menu-desc">低价享4S高端品质</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,491 @@
+
+html {
+    font-size: 20px;
+}
+@media only screen and (min-width: 400px) {
+    html {
+        font-size: 21.33333333px !important;
+    }
+}
+@media only screen and (min-width: 414px) {
+    html {
+        font-size: 22.08px !important;
+    }
+}
+@media only screen and (min-width: 480px) {
+    html {
+        font-size: 25.6px !important;
+    }
+}
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    -webkit-touch-callout: none;
+}
+.highlight {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+}
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+body {
+    margin: 0;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+    display: block;
+}
+audio,
+canvas,
+progress,
+video {
+    display: inline-block;
+    vertical-align: baseline;
+}
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+[hidden],
+template {
+    display: none;
+}
+a {
+    background-color: transparent;
+}
+a:active,
+a:hover {
+    outline: 0;
+}
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+b,
+strong {
+    font-weight: bold;
+}
+dfn {
+    font-style: italic;
+}
+h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+    margin: 0;
+}
+mark {
+    background: #ff0;
+    color: #000;
+}
+small {
+    font-size: 80%;
+}
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+sup {
+    top: -0.5em;
+}
+sub {
+    bottom: -0.25em;
+}
+img {
+    border: 0;
+}
+svg:not(:root) {
+    overflow: hidden;
+}
+figure {
+    margin: 1em 40px;
+}
+hr {
+    box-sizing: content-box;
+    height: 0;
+}
+pre {
+    overflow: auto;
+}
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, monospace;
+    font-size: 1em;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+button {
+    overflow: visible;
+}
+button,
+select {
+    text-transform: none;
+}
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+input::-webkit-input-placeholder {
+    font-size: 12px;
+    color: #a2a2a2;
+}
+input {
+    line-height: normal;
+}
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    height: auto;
+}
+input[type="search"] {
+    -webkit-appearance: textfield;
+    box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+legend {
+    border: 0;
+    padding: 0;
+}
+textarea {
+    overflow: auto;
+}
+optgroup {
+    font-weight: bold;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+td,
+th {
+    padding: 0;
+}
+body {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #5f5f5f;
+    background: #fff;
+    overflow: hidden;
+}
+a,
+input,
+textarea,
+select,
+button {
+    outline: 0;
+}
+p {
+    margin: 0;
+}
+a {
+    color: #5f5f5f;
+    text-decoration: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+ul, li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.oh {
+    overflow: hidden;
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.p10 {
+    padding: 10px;
+}
+.pl10 {
+    padding-left: 10px;
+}
+.pr10 {
+    padding-right: 10px;
+}
+.plr10 {
+    padding: 0 10px;
+}
+.ml20 {
+    margin-left: 20px;
+}
+.mr10 {
+    margin-right: 10px;
+}
+.mr20 {
+    margin-right: 20px;
+}
+/*=== 栅格 ===*/
+.table {
+    display: table;
+    width: 100%;
+}
+.table-body {
+    display: table-row-group;
+    vertical-align: middle;
+}
+.table-row {
+    display: table-row;
+}
+.table-col {
+    display: table-cell;
+    vertical-align: middle;
+}
+.row {
+    overflow: hidden;
+}
+.col {
+    float: left;
+}
+.col-15 {
+    width: 15%;
+}
+.col-20 {
+    width: 20%;
+}
+.col-30 {
+    width: 30%;
+}
+.col-40 {
+    width:40%;
+}
+.col-50 {
+    width: 50%;
+}
+.col-60 {
+    width: 60%;
+}
+.col-70 {
+    width: 70%;
+}
+.col-85 {
+    width: 85%;
+}
+/*=== 对齐方式 ===*/
+.align-h-center {
+    text-align: center;
+}
+.align-h-right {
+    text-align: right;
+}
+.align-v-top {
+    vertical-align: top;
+}
+.align-v-middle {
+    vertical-align: middle;
+}
+.align-v-bottom {
+    vertical-align: bottom;
+}
+.modal-layer {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 123;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+/*=== 图标 ===*/
+/*=== 页面公共标签 ===*/
+.page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 40px;
+    width: 100%;
+    overflow-y: scroll;
+}
+footer {
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: 40px;
+    z-index: 10;
+    background-color: #ffdecf;
+}
+.page footer {
+    bottom: 0;
+    width: 100%;
+    padding: 0;
+}
+.price, .highlight-color {
+    color: #ff7000;
+}
+.divider {
+    height: 10px;
+    background-color: #efefef;
+}
+/*=== 模态对话框 ===*/
+.modal-dialog {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 321;
+    overflow: hidden;
+}
+/*=== Tab页 ===*/
+.tab-header .tab-header-item {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: #fff;
+    border-bottom: 3px solid #fff;
+}
+.tab-header .tab-header-item:first-child {
+    border-right: 1px solid #dbdbdb;
+}
+.tab-header-item .tab-header-btn {
+    display: block;
+}
+.tab-header-item.active {
+    border-bottom-color: #ff7000;
+}
+.tab-header-item.active .tab-header-btn {
+    color: #ff7000;
+}
+.tab-content {
+    overflow: hidden;
+}
+.tab-content-item {
+    float: left;
+    padding: 10px;
+}
+/*=== 可切换导航 NavBar ===*/
+.switch-tab {
+    border: 1px solid #dbdbdb;
+    border-radius: 5px 5px 0 0;
+    background-color: #fff;
+    overflow: hidden;
+}
+.switch-tab-header {
+    border-bottom: 1px solid #dbdbdb;
+}
+.switch-tab-header .switch-tab-nav, .switch-tab-header .switch-tab-title {
+    height: 40px;
+    line-height: 40px;
+}
+.switch-tab-nav {
+    width: 25px;
+}
+.switch-tab-btn {
+    display: block;
+    width: 35px;
+    height: 40px;
+}
+.switch-left-btn {
+    background: url("../img/navbar_left.png") 10px center no-repeat;
+    background-size: 15px 15px;
+}
+.switch-right-btn {
+    background: url("../img/navbar_right.png") 10px center no-repeat;
+    background-size: 15px 15px;
+}
+/*=== 提示框 toast ===*/
+.toastWrapper {
+    display: none;
+    position: absolute;
+    bottom: 100px;
+    width: 100%;
+    text-align: center;
+    z-index: 9999;
+}
+.toast-text {
+    display: inline-block;
+    padding: 5px 15px;
+    max-width: 60%;
+    min-height: 30px;
+    line-height: 20px;
+    color: #fff;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 10000;
+}
+/*=== Loading动画 ===*/
+.load-more {
+    padding-bottom: 10px;
+}
+.load-more-btn {
+    display: inline-block;
+    padding: 5px 10px;
+    height: 30px;
+    border-radius: 5px;
+}
+.load-more-process {
+    display: none;
+    line-height: 30px;
+}

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>行得通注册就送200元喷漆券，小划痕不用再等着报保险了！</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/register.css">
+</head>
+<body>
+<!-- 注册&领取优惠券页面 -->
+<div class="register-page page">
+    <section id="content" class="content">
+        <div class="banner">
+            <img class="banner-img" src="img/register_banner_01.jpg">
+        </div>
+        <div id="register" class="register">
+            <div class="xdt-msg">
+                <div class="head-img"></div>
+                <div class="msg-text">
+                    <p>Hi，您好，我是行得通用户</p>
+                    <p class="large">送您<span class="price">200元</span>行得通自营店</p>
+                    <p class="large">喷漆优惠券</p>
+                </div>
+            </div>
+            <div id="registerForm" class="register-form">
+                <div class="row">
+                    <input id="cellphone" class="form-input" type="tel" placeholder="请输入手机号码" maxlength="11">
+                </div>
+                <div class="row">
+                    <div class="col col-50">
+                        <input id="validateCode" class="form-input" type="tel" placeholder="请输入验证码">
+                    </div>
+                    <div class="col col-50">
+                        <a id="validateBtn" class="validate-btn highlight" href="javascript:;">获取验证码</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <a id="registerSubmitBtn" class="submit-btn highlight" href="javascript:;">领 取</a>
+                </div>
+                <div class="row">
+                    <a class="activity-btn highlight" href="javascript:;">
+                        <span class="radio-btn"><span class="radio-dot"></span></span>
+                        <input type="hidden" value="1">
+                        <span class="align-v-middle">阅读并同意行得通的<span class="price">活动说明</span></span>
+                    </a>
+                </div>
+            </div>
+            <div class="activity-desc">
+                <p>【活动说明】：</p>
+                <div class="table">
+                    <div class="table-row">
+                        <div class="table-col align-v-top">1.</div>
+                        <div class="table-col">推荐好友成功下载注册行得通的推荐人，可获得行得通自营店20元洗车优惠券一张；</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-col align-v-top">2.</div>
+                        <div class="table-col">本喷漆优惠券仅限在行得通自营店使用，使用后可以在自营店的合作商户服务；</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-col align-v-top">3.</div>
+                        <div class="table-col">自营店的合作商户处于动态更新中，具体以下单后订单详情中列举的为准；</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-col align-v-top">4.</div>
+                        <div class="table-col">优惠券有效期自领用之日起90天；</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-col align-v-top">5.</div>
+                        <div class="table-col">每个手机号码仅限领用一次；</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-col align-v-top">6.</div>
+                        <div class="table-col">
+                            <p>有任何疑问可拨打行的通客服电话：</p>
+                            <p><a href="tel:4006-172-6688">4006-172-6688</a></p>
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-col align-v-top">7.</div>
+                        <div class="table-col">最终解释权归深圳行得通科技有限公司所有。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="registerSuccess" class="register-success">
+            <div class="user-info table">
+                <div class="table-row">
+                    <div class="table-col head-img">
+                        <img class="align-v-middle" src="img/user_head_01.png" width="80">
+                    </div>
+                    <div class="table-col">
+                        <!--<p id="userName" class="name"></p>-->
+                        <p>这是您已经领过的卡券了哦~~</p>
+                    </div>
+                </div>
+            </div>
+            <div class="coupon">
+                <div class="coupon-content">
+                    <div class="coupon-desc table">
+                        <div class="table-row">
+                            <div class="table-col coupon-title">
+                                <p>喷漆优惠券</p>
+                                <p>限行得通自营店使用</p>
+                            </div>
+                            <div class="table-col coupon-price">
+                                <p class="price"><b>¥</b>200</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="expiration-date">
+                        <p>有效期至 2016.09.02</p>
+                    </div>
+                </div>
+            </div>
+            <div class="user-account">
+                <p>优惠券已存入账户：<span id="userCellphone" class="price"></span></p>
+                <!--<p>看看朋友们手气如何</p>-->
+            </div>
+
+        </div>
+    </section>
+    <footer>
+        <div class="button-group">
+            <a id="downloadBtn" class="download btn highlight" href="javascript:;">下载行得通APP</a>
+            <!--<a class="attention btn highlight" href="javascript:;">关注行得通养车公众号</a>-->
+        </div>
+    </footer>
+</div>
+<!-- toast提示框 -->
+<div id="toast" class="toastWrapper">
+    <div class="toast-text"></div>
+</div>
+<div id="appleDownload" class="apple-download-dialog modal-layer">
+    <div class="modal-dialog align-h-right">
+        <img src="img/share_line.png" height="100">
+        <p>戳右上角，选择“<span>在Safari中打开</span>”点击“<span>下载行得通APP</span>”即可完成下载。</p>
+    </div>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/touch.js"></script>
+<script src="js/core.js"></script>
+<script>
+    var recommendUserId = Request.getParameter("id");
+    var submitRegisterData = {
+        recommenderId: recommendUserId,
+        applyerMobile: "",
+        verifyCode: ""
+    };
+
+    var $validateBtn = $("#validateBtn");
+    $validateBtn.on("tap", getValidateCode);
+
+    function getValidateCode() {
+        var cellphone = $("#cellphone").val();
+        var flag = RegEx.cellphone(cellphone);
+        console.log(cellphone);
+        if (flag) {
+            $validateBtn.addClass("disable").removeClass("highlight");
+            submitRegisterData.applyerMobile = cellphone;
+
+            //倒计时
+            Util.countdown({
+                target: $validateBtn,
+                seconds: 30,
+                text: "重新发送（time）",
+                complete: function () {
+                    $validateBtn.text("获取验证码");
+                    $validateBtn.removeClass("disable").addClass("highlight");
+                    $validateBtn.on("tap", getValidateCode);
+                }
+            });
+
+            //发送获取验证码请求
+            Ajax.get({
+                url: "http://v2.xingdt.com:8020/mobile-web/identify_code/getRegCode",
+                data: {"mobile": cellphone},
+                callback: function () {
+                    //成功获取验证码后绑定注册事件
+                    //bindRegisterAction();
+                }
+            });
+        } else {
+            Util.toast("请输入正确的手机号");
+        }
+    }
+
+    $("#registerSubmitBtn").on("tap", function () {
+        var validateCode = $("#validateCode").val();
+        var flag = RegEx.validateCode(validateCode);
+        if (flag) {
+            submitRegisterData.verifyCode = validateCode;
+            Ajax.post({
+                url: "http://v2.xingdt.com:8020/mobile-web/v2/share/drawByRecommend",
+                data: submitRegisterData,
+                callback: function () {
+                    $("#userCellphone").text(submitRegisterData.applyerMobile);
+                    $("#register").hide();
+                    $("#registerSuccess").show();
+                }
+            });
+        } else {
+            Util.toast("请输入正确的验证码");
+        }
+    });
+
+    var $downloadBtn = $("#downloadBtn");
+    if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+        $downloadBtn.attr("href", "https://itunes.apple.com/us/app/xing-de-tong/id1055263492");
+        if (isWX()) {
+            $downloadBtn.on("tap", function () {
+                $("#appleDownload").show();
+            })
+        }
+    } else if (/(Android)/i.test(navigator.userAgent)) {
+        $downloadBtn.attr("href", "http://app.qq.com/#id=detail&appid=1104985564");
+    }
+
+    $("#appleDownload").on("tap", function () {
+        $(this).hide();
+    });
+
+    //修正点击输入框时，输入法会遮住的问题
+    var $content = $("#content");
+    $("#registerForm").on("tap", ".form-input", function () {
+        var contentTop = $content.scrollTop();
+        var contentHeight = $content.offset().height;
+        setTimeout(function () {
+            if (contentTop == 0) {
+                var contentCurrentHeight = $content.offset().height;
+                $content.scrollTop(contentHeight - contentCurrentHeight);
+            }
+        }, 300);
+    });
+
+    function isWX(){
+        var ua = navigator.userAgent.toLowerCase();
+        return (/micromessenger/.test(ua)) ? true : false;
+    }
+</script>
+</body>
+</html>

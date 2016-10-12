@@ -1,0 +1,39 @@
+.content {
+    bottom: 0;
+    background-color: #efefef;
+}
+.order-item {
+    position: relative;
+    padding: 5px 20px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    line-height: 22px;
+    background-color: #fff;
+}
+.order-item-label {
+    width: 60px;
+    vertical-align: top;
+}
+.order-item .item-desc {
+    color: #a2a2a2;
+}
+.order-item:before {
+    position: absolute;
+    display: block;
+    top: 11px;
+    left: 8px;
+    content: " ";
+    width: 7px;
+    height: 7px;
+    -webkit-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+    border: 1px solid #ff7000;
+}
+.order-item .appointment-desc {
+    text-indent: 2em;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.car-state .car-state-img {
+    margin-right: 10px;
+}

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>快速预约</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/appointment.css">
+</head>
+<body>
+<!-- 快速预约页面 -->
+<div id="appointmentPage" class="appointment-page page">
+    <section id="content" class="appointment-content content">
+        <div class="merchant appoint">
+            <div class="appoint-title plr10">预约商家</div>
+            <a id="chooseMerchant" class="highlight" href="javascript:;">
+                <div class="appoint-content plr10">
+                    <!--<span class="icon-link"></span>-->
+                    <div id="merchant" class="appoint-desc">请选择您要去往的商家店铺</div>
+                </div>
+            </a>
+        </div>
+        <div class="appoint-time appoint">
+            <div class="appoint-title plr10">预约时间</div>
+            <a id="chooseAppointTime" class="highlight" href="javascript:;">
+                <div class="appoint-content plr10">
+                    <span class="icon-link"></span>
+                    <div id="appointmentTime" class="appoint-desc">请选择预约到店时间</div>
+                </div>
+            </a>
+        </div>
+        <div class="adviser appoint">
+            <div class="appoint-title plr10">服务顾问</div>
+            <a id="chooseAdviser" class="highlight" href="javascript:;">
+                <div class="appoint-content plr10">
+                    <span class="icon-link"></span>
+                    <div id="adviser" class="appoint-desc">可选择您熟悉的服务顾问</div>
+                </div>
+            </a>
+        </div>
+        <div class="contact appoint">
+            <div class="appoint-title plr10">联系人信息</div>
+            <div id="userInfo" class="user-info table">
+                <div class="table-row">
+                    <div class="table-col col-30 align-h-center">
+                        <span class="form-label">联系人：</span>
+                    </div>
+                    <div class="table-col col-70">
+                        <input id="contactsName" class="form-input" name="userName" placeholder="请输入姓名" type="text"/>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="table-col col-30 align-h-center">
+                        <span class="form-label">电&nbsp;&nbsp;&nbsp;&nbsp;话：</span>
+                    </div>
+                    <div class="table-col col-70">
+                        <input id="contactsPhone" class="form-input" name="tel" placeholder="请输入11位手机号" type="text"/>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="table-col col-30 align-h-center">
+                        <span class="form-label">车牌号：</span>
+                    </div>
+                    <div class="table-col col-70">
+                        <input id="carLicenseNumber" class="form-input" name="car-number" placeholder="请输入车牌号码" type="text"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 快速预约底部信息 -->
+    <footer>
+        <a id="submitAppointment" class="next-step highlight" href="javascript:;">预 约</a>
+    </footer>
+    <!-- 选择优惠详情弹出框 -->
+    <div id="preferentialDialog" class="modal-layer">
+        <div class="preferential-dialog modal-dialog">
+            <div id="preferentialDialogContent" class="preferential-dialog-content">
+                <!-- 时间轴 -->
+                <div id="timeline" class="timeline">
+                    <a id="scrollLeftBtn" class="scrollLeft scroll-btn" href="javascript:;">
+                        <span class="scroll-left-triangle scroll-triangle"></span>
+                    </a>
+                    <a id="scrollRightBtn" class="scrollRight scroll-btn" href="javascript:;">
+                        <span class="scroll-right-triangle scroll-triangle"></span>
+                    </a>
+                    <ul id="timelineBox" class="timeline-box clearfix">
+                        <li class="timeline-item">
+                            <a class="timeline-link yesterday" href="javascript:;">
+                                <p class="month-day"></p>
+                                <p class="day-of-week"></p>
+                            </a>
+                        </li>
+                        <li class="timeline-item">
+                            <a class="timeline-link" href="javascript:;">
+                                <p class="month-day"></p>
+                                <p class="day-of-week"></p>
+                            </a>
+                        </li>
+                        <li class="timeline-item">
+                            <a class="timeline-link" href="javascript:;">
+                                <p class="month-day"></p>
+                                <p class="day-of-week"></p>
+                            </a>
+                        </li>
+                        <li class="timeline-item">
+                            <a class="timeline-link" href="javascript:;">
+                                <p class="month-day"></p>
+                                <p class="day-of-week"></p>
+                            </a>
+                        </li>
+                        <li class="timeline-item">
+                            <a class="timeline-link" href="javascript:;">
+                                <p class="month-day"></p>
+                                <p class="day-of-week"></p>
+                            </a>
+                        </li>
+                        <li class="timeline-item">
+                            <a class="timeline-link" href="javascript:;">
+                                <p class="month-day"></p>
+                                <p class="day-of-week"></p>
+                            </a>
+                        </li>
+                        <li class="timeline-item">
+                            <a class="timeline-link" href="javascript:;">
+                                <p class="month-day"></p>
+                                <p class="day-of-week"></p>
+                            </a>
+                        </li>
+                        <li class="timeline-item">
+                            <a class="timeline-link" href="javascript:;">
+                                <p class="month-day"></p>
+                                <p class="day-of-week"></p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 优惠信息列表 -->
+                <div id="preferentialList" class="preferential-list">
+                    <div class="table">
+                        <div class="table-row thead">
+                            <div class="table-col">到店时间</div>
+                            <div class="table-col">优惠方式</div>
+                            <div class="table-col">优惠额度</div>
+                        </div>
+                        <div id="preferentialTbody" class="table-body">
+                            <!--<div class="table-row">
+                                <div class="table-col">09:00-11.00</div>
+                                <div class="table-col">返券</div>
+                                <div class="table-col price">280元</div>
+                            </div>-->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="dialog-btn-group clearfix">
+                <a id="modalOK" class="ok-btn dialog-btn highlight" href="javascript:;">确 定</a>
+                <a id="modalCancel" class="cancel-btn dialog-btn highlight" href="javascript:;">取 消</a>
+            </div>
+        </div>
+    </div>
+    <!-- toast提示框 -->
+    <div id="toast" class="toastWrapper">
+        <div class="toast-text"></div>
+    </div>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/touch.js"></script>
+<script src="js/timeline.js"></script>
+<script>
+    var DAY_OF_WEEK = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
+    var preferentialData = {};
+    var submitData = {
+        shopId: 0,
+        consultantId: 0,
+        appointmentTime: "",
+        contactsName: "",
+        contactsPhone: "",
+        carLicenseNumber: ""
+    };
+    var validate = {//页面校验
+        contactsName: {
+            rule: "^[A-Za-z]+|[\u4e00-\u9fa5]+$",
+            errMsg: "请输入正确的联系人姓名"
+        },
+        contactsPhone: {
+            rule: "^[0-9]{11}$",
+            errMsg: "请输入正确的手机号"
+        },
+        carLicenseNumber: {
+            rule: "^[\u4e00-\u9fa5][A-Za-z][A-Za-z0-9]{5,6}$",
+            errMsg: "请输入正确的车牌号码"
+        }
+    };
+    var $toast = $("#toast");
+    var toastTimeout = null;
+
+    if (window.fromiOS) {
+        preferentialData = window.fromiOS.preferentialData;
+    }
+    if (window.fromAndroid) {
+        preferentialData = JSON.parse(window.fromAndroid.preferentialData());
+    }
+    //修正点击输入框时，输入法会遮住的问题
+    var $content = $("#content");
+    $("#userInfo").on("tap", ".form-input", function () {
+        var contentTop = $content.scrollTop();
+        var contentHeight = $content.offset().height;
+        setTimeout(function () {
+            if (contentTop == 0) {
+                var contentCurrentHeight = $content.offset().height;
+                $content.scrollTop(contentHeight - contentCurrentHeight);
+            }
+        }, 300);
+    });
+
+    var $preferentialDialog = $("#preferentialDialog");
+    var $preferentialTbody = $("#preferentialTbody");
+
+    //更新商家信息、商家优惠详情信息
+    (function () {
+        submitData.shopId = preferentialData.merchant.shopId;//提交信息中的商家ID
+        $("#merchant").text(preferentialData.merchant.shopName);//商家显示名称
+        $("#contactsName").val(preferentialData.contactsName || "");//联系人姓名
+        $("#contactsPhone").val(preferentialData.contactsPhone || "");//联系人电话
+        $("#carLicenseNumber").val(preferentialData.carLicenseNumber || "");//联系人车牌号
+    })();
+
+    if (preferentialData.promotionWeekPlans.length > 0) {
+        //初始化时间轴
+        $("#timeline").timeline({
+            today: preferentialData.today, //[2016, 0, 22]
+            updateFn: function (dayOfWeek) {
+                var selectDay = preferentialData.promotionWeekPlans[dayOfWeek];
+                var dayPreferential = selectDay.promotionDayPlans;
+                $preferentialTbody.empty();//先清空表格内容再添加
+                for (var i = 0; i < dayPreferential.length; i++) {
+                    var item = dayPreferential[i];
+                    //动态创建并添加到表格中
+                    if (i === 0) {//默认选中第一个
+                        $('<div class="table-row selected"><div class="table-col">' + item.timePeriod
+                                + '</div><div class="table-col">' + item.promotionTypeName
+                                + '</div><div class="table-col price">' + item.promotionValue + '</div></div>', {
+                            "appointment-date": selectDay.currentDate,
+                            "appointment-time": item.timePeriod,
+                            "day-of-week": selectDay.dayOfWeek
+                        }).appendTo($preferentialTbody);
+                    } else {
+                        $('<div class="table-row"><div class="table-col">' + item.timePeriod
+                                + '</div><div class="table-col">' + item.promotionTypeName
+                                + '</div><div class="table-col price">' + item.promotionValue + '</div></div>', {
+                            "appointment-date": selectDay.currentDate,
+                            "appointment-time": item.timePeriod,
+                            "day-of-week": selectDay.dayOfWeek
+                        }).appendTo($preferentialTbody);
+                    }
+                }
+            }
+        });
+        //阻止优惠详情和优惠券弹出框冒泡事件
+        $(".modal-dialog").on("tap", function (e) {
+            e.stopPropagation();
+        });
+        //点击【预约时间】
+        $("#chooseAppointTime").on("tap", function () {
+            $preferentialDialog.show();
+            $("#userInfo .form-input").blur();
+        });
+        //选择优惠时间段
+        $preferentialTbody.on("tap", ".table-row", function () {
+            $(this).addClass("selected").siblings().removeClass("selected");
+        });
+        //点击优惠详情弹出框【确定】按钮
+        $("#modalOK").on("tap", function () {
+            $preferentialDialog.hide();
+            var $selectedRow = $preferentialTbody.find(".table-row.selected");
+            var appointmentDate = $selectedRow.attr("appointment-date");
+            var dayOfWeek = DAY_OF_WEEK[parseInt($selectedRow.attr("day-of-week"))];
+            var appointmentTime = $selectedRow.attr("appointment-time");
+            $("#appointmentTime").text(appointmentDate + " " + dayOfWeek + " " + appointmentTime);
+            submitData.appointmentTime = appointmentDate + " " + appointmentTime;//订单提交信息中的预约时间
+        });
+        //点击优惠详情弹出框【取消】按钮
+        $("#modalCancel").on("tap", function () {
+            $preferentialDialog.hide();
+        });
+        //点击优惠详情弹出框灰色区域
+        $preferentialDialog.on("tap", function () {
+            $preferentialDialog.hide();
+        });
+    }
+    //跳转到顾问列表
+    $("#chooseAdviser").on("tap", function () {
+        if (window.fromiOS) {
+            gotoAdviserList();
+        }
+        if (window.fromAndroid) {
+            window.fromAndroid.gotoAdviserList();
+        }
+    });
+    //更新顾问信息
+    function updateAdviser(adviser) {
+        $("#adviser").text(adviser.consultantName);
+        submitData.consultantId = adviser.consultantId;
+    }
+    //提交预约信息
+    $("#submitAppointment").on("tap", function () {
+        //校验联系人姓名
+        var contactsName = $("#contactsName").val();
+        if (new RegExp(validate.contactsName.rule).test(contactsName)) {
+            submitData.contactsName = contactsName;
+        } else {
+            toast(validate.contactsName.errMsg);
+            return;
+        }
+        //校验联系人电话
+        var contactsPhone = $("#contactsPhone").val();
+        if (new RegExp(validate.contactsPhone.rule).test(contactsPhone)) {
+            submitData.contactsPhone = contactsPhone;
+        } else {
+            toast(validate.contactsPhone.errMsg);
+            return;
+        }
+        //校验车牌号
+        var carLicenseNumber = $("#carLicenseNumber").val();
+        if (new RegExp(validate.carLicenseNumber.rule).test(carLicenseNumber)) {
+            submitData.carLicenseNumber = carLicenseNumber;
+        } else {
+            toast(validate.carLicenseNumber.errMsg);
+            return;
+        }
+        //提交
+        //console.log(JSON.stringify(submitData));
+        if (window.fromiOS) {
+            submitAppointment(submitData);
+        }
+        if (window.fromAndroid) {
+            window.fromAndroid.submitAppointment(JSON.stringify(submitData));
+        }
+    });
+    //提示框
+    function toast(text) {
+        $toast.children().text(text);
+        $toast.show();
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(function () {
+            $toast.hide();
+        }, 2000);
+    }
+</script>
+</body>
+</html>

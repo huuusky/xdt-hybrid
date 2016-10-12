@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>我的收入</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/myIncome.css">
+</head>
+<body>
+<!-- 我的收入页面 -->
+<div class="income-page page">
+    <!-- Tab页 -->
+    <section id="tab" class="tab content">
+        <!-- Tab页头 -->
+        <div class="tab-header table">
+            <div class="table-row">
+                <div class="tab-header-item active table-col col-50">
+                    <a class="tab-header-btn highlight" href="javascript:;">月账单</a>
+                </div>
+                <div class="tab-header-item table-col col-50">
+                    <a class="tab-header-btn highlight" href="javascript:;">季度账单</a>
+                </div>
+            </div>
+        </div>
+        <!-- Tab页内容 -->
+        <div class="tab-content">
+            <ul class="tab-content-wrap clearfix">
+                <!-- 月收入 -->
+                <li class="tab-content-item">
+                    <div class="monthly-income">
+                        <div id="monthlySwitchTab" class="switch-tab">
+                            <div class="switch-tab-header table">
+                                <div class="table-row">
+                                    <div class="switch-tab-nav nav-left table-col">
+                                        <a class="switch-left-btn switch-tab-btn highlight" href="javascript:;"></a>
+                                    </div>
+                                    <div id="monthlyTitle" class="switch-tab-title table-col align-h-center"></div>
+                                    <div class="switch-tab-nav nav-right table-col">
+                                        <a class="switch-right-btn switch-tab-btn highlight" href="javascript:;"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="switch-tab-content table">
+                                <div class="income-desc table-row">
+                                    <div class="income-statistics table-col col-50">
+                                        <p>月收入</p>
+                                        <p class="price"><span id="monthlyIncomeMoney" class="large-text">0</span>元</p>
+                                    </div>
+                                    <div class="income-rank table-col col-50">
+                                        <p>全网排名</p>
+                                        <p><span id="monthlyIncomeRank" class="large-text">0</span>名</p>
+                                    </div>
+                                </div>
+                                <div class="income-chart table-row">
+                                    <div class="table-col">
+                                        <div id="monthlyPercentageChart" class="doughnut-chart"></div>
+                                    </div>
+                                    <div class="table-col">
+                                        <div id="monthlyRewardChart" class="doughnut-chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!-- 季度收入 -->
+                <li class="tab-content-item">
+                    <div class="quarterly-income">
+                        <div id="quarterlySwitchTab" class="switch-tab">
+                            <div class="switch-tab-header table">
+                                <div class="table-row">
+                                    <div class="switch-tab-nav nav-left table-col">
+                                        <a class="switch-left-btn switch-tab-btn highlight" href="javascript:;"></a>
+                                    </div>
+                                    <div id="quarterlyTitle" class="switch-tab-title table-col align-h-center"></div>
+                                    <div class="switch-tab-nav nav-right table-col">
+                                        <a class="switch-right-btn switch-tab-btn highlight" href="javascript:;"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="switch-tab-content table">
+                                <div class="income-desc table-row">
+                                    <div class="income-statistics table-col col-50">
+                                        <p>季度收入</p>
+                                        <p class="price"><span id="quarterlyIncomeMoney" class="large-text">0</span>元</p>
+                                    </div>
+                                    <div class="income-rank table-col col-50">
+                                        <p>全网排名</p>
+                                        <p><span id="quarterlyIncomeRank" class="large-text">0</span>名</p>
+                                    </div>
+                                </div>
+                                <div class="income-chart table-row">
+                                    <div class="table-col ">
+                                        <div id="quarterlyPercentageChart" class="doughnut-chart"></div>
+                                    </div>
+                                    <div class="table-col">
+                                        <div id="quarterlyRewardChart" class="doughnut-chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/touch.js"></script>
+<script src="js/tab.js"></script>
+<script src="js/doughnutChart.js"></script>
+<script src="js/switchTab.js"></script>
+<script src="js/constant.js"></script>
+<script>
+    /*var monthlyIncomeData = null;
+    var quarterlyIncomeData = null;
+    if (window.fromAndroid) {
+        monthlyIncomeData = JSON.parse(window.fromAndroid.monthlyIncomeData());//月收入数据
+        quarterlyIncomeData = JSON.parse(window.fromAndroid.quarterlyIncomeData());//季度收入数据
+    }*/
+    //Tab页
+    $("#tab").tab();
+    //月收入
+    var $monthlyPercentageChart = $("#monthlyPercentageChart");
+    var $monthlyRewardChart = $("#monthlyRewardChart");
+    $("#monthlySwitchTab").switchTab({
+        data: monthlyIncomeData,
+        switchover: function (item) {
+            $("#monthlyTitle").text(item.statisticCycle);
+            $("#monthlyIncomeMoney").text(item.totalIncome);
+            $("#monthlyIncomeRank").text(item.rating);
+
+            $monthlyPercentageChart.updateDoughnut($monthlyPercentageChart.find(".progressCircle"), parseInt(Math.random() * 100));
+            $monthlyRewardChart.updateDoughnut($monthlyRewardChart.find(".progressCircle"), parseInt(Math.random() * 100));
+        },
+        complete: function (item) {
+            //console.log(item);
+            $monthlyPercentageChart.doughnut({
+                percent: 85,
+                centralText: "提成",
+                bottomText: "¥1800.5",
+                bottomHeight: 30
+            });
+            $monthlyRewardChart.doughnut({
+                percent: 35,
+                stroke: "#ff4088",
+                centralTextColor: "#ff4088",
+                centralText: "奖励",
+                bottomText: "¥680",
+                bottomHeight: 30
+            });
+        }
+    });
+    //季度收入
+    var $quarterlyPercentageChart = $("#quarterlyPercentageChart");
+    var $quarterlyRewardChart = $("#quarterlyRewardChart");
+    $("#quarterlySwitchTab").switchTab({
+        data: quarterlyIncomeData,
+        switchover: function (item) {
+            $("#quarterlyTitle").text(item.statisticCycle);
+            $("#quarterlyIncomeMoney").text(item.totalIncome);
+            $("#quarterlyIncomeRank").text(item.rating);
+
+            $quarterlyPercentageChart.updateDoughnut($quarterlyPercentageChart.find(".progressCircle"), parseInt(Math.random() * 100));
+            $quarterlyRewardChart.updateDoughnut($quarterlyRewardChart.find(".progressCircle"), parseInt(Math.random() * 100));
+        },
+        complete: function () {
+            $quarterlyPercentageChart.doughnut({
+                percent: 23,
+                centralText: "提成",
+                bottomText: "¥1800.5",
+                bottomHeight: 30
+            });
+            $quarterlyRewardChart.doughnut({
+                percent: 13,
+                stroke: "#ff4088",
+                centralTextColor: "#ff4088",
+                centralText: "奖励",
+                bottomText: "¥680",
+                bottomHeight: 30
+            });
+        }
+    });
+</script>
+</body>
+</html>

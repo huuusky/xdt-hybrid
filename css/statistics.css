@@ -1,0 +1,75 @@
+.content {
+    top: 80px;
+    bottom: 0;
+}
+::-webkit-inner-spin-button {display: none;}
+::-webkit-calendar-picker-indicator {display: none;}
+::-webkit-clear-button {display: none;}
+/*=== 页头查询条件 ===*/
+header {
+    padding: 0 10px;
+    height: 80px;
+}
+header .title {
+    line-height: 30px;
+}
+header .date-input {
+    width: 100px;
+    height: 30px;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #dbdbdb;
+    background-color: #efefef;
+}
+header .between {
+    margin: 0 10px;
+    font-size: 12px;
+    vertical-align: middle;
+}
+header .search-btn {
+    display: block;
+    float: right;
+    padding-left: 28px;
+    width: 65px;
+    height: 30px;
+    color: #ffffff;
+    line-height: 30px;
+    font-size: 12px;
+    border-radius: 15px;
+    background: #ff7000 url("../img/search_btn.png") 10px center no-repeat;
+    background-size: 15px 14px;
+}
+/*=== 统计项 ===*/
+.statistics-item {
+    margin-bottom: 10px;
+}
+.statistics-item-title {
+    background-color: #dbdbdb;
+    padding-left: 10px;
+    height: 30px;
+    line-height: 30px;
+}
+.statistics-item-content {
+    padding: 10px;
+}
+.statistics-item-content .table {
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+}
+.statistics-item-content .table-col {
+    padding: 15px 0;
+}
+.statistics-item-content .statistics-chart {
+    display: inline-block;
+    height: 70px;
+    vertical-align: middle;
+}
+.statistics-item-content .statistics-desc {
+    padding-left: 15px;
+    font-size: 12px;
+    border-left: 1px solid #dbdbdb;
+}
+.statistics-item-content .statistics-desc.no-border {
+    border-left: none;
+}

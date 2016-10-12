@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>活动</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/activity.css">
+</head>
+<body>
+<!-- 活动页面 -->
+<div class="activity-page page">
+    <section class="content">
+        <!-- 活动列表 -->
+        <div id="activityList" class="activity-list">
+            <!-- 数据动态生成 -->
+            <!--<div class="activity">
+                <div class="activity-img">
+                    <a class="highlight" href="xingdtApp://activity/detail?title=注册有礼&url=http://192.168.168.88/XingdtEmbedPage/page/activity/registerNow.html">
+                        <img class="align-v-top" src="img/activity_list_01.jpg" alt="">
+                    </a>
+                </div>
+                <div class="activity-desc row">
+                    <div class="col activity-title">前100名注册用户可获得20元现金优惠券前100名注册用户可获得20元现金优惠券</div>
+                    <div class="col activity-countdown align-h-right">活动剩余12小时</div>
+                </div>
+            </div>-->
+        </div>
+        <!-- 加载更多 -->
+        <div id="loadMore" class="load-more align-h-center">
+            <a id="loadMoreBtn" class="load-more-btn highlight" href="javascript:;">点击加载更多</a>
+            <p id="loadMoreProcess" class="load-more-process">
+                <img class="align-v-middle" src="img/loading.gif" width="16" alt="">
+                <span class="align-v-middle">正在加载...</span>
+            </p>
+        </div>
+    </section>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/touch.js"></script>
+<script>
+    var activityData = {};//活动数据
+    var page = 0;//评论初始页数
+    var $activityList = $("#activityList");//活动列表
+    var $loadMore = $("#loadMore");//加载更多
+    var $loadMoreBtn = $("#loadMoreBtn");//加载更多按钮
+    var $loadMoreProcess = $("#loadMoreProcess");//正在加载提示
+
+    //获取活动数据
+    if (window.fromiOS) {
+        activityData = window.fromiOS.activityData;
+    }
+    if (window.fromAndroid) {
+        activityData = JSON.parse(window.fromAndroid.activityData());
+    }
+    //初始化评论列表数据
+    createActivity(activityData);//生成页面评价内容
+    //点击【加载更多】按钮，传入页码请求数据
+    $loadMoreBtn.on("tap", function () {
+        $loadMoreBtn.hide();
+        $loadMoreProcess.show();
+
+        page++;//页码加1
+        if (window.fromiOS) {
+            loadMore(page);//调用iOS方法加载数据
+        }
+        if (window.fromAndroid) {
+            window.fromAndroid.loadMore(page);//调用Android方法加载数据
+        }
+    });
+    //更新页面内容,iOS或Android调用此方法更新页面数据
+    function updateContent(data) {
+        $loadMoreBtn.show();
+        $loadMoreProcess.hide();
+        setTimeout(function () {
+            createActivity(data);
+        }, 200);
+    }
+    //切换地区后更新页面内容,iOS或Android调用此方法更新页面数据
+    function switchCity(data) {
+        //$activityList.empty();
+        document.querySelector("#activityList").innerHTML = "";
+        updateContent(data);
+    }
+    //生成页面评价内容
+    function createActivity(data) {
+        //遍历活动列表
+        if (data.rows.length > 0) {
+            page = data.nowpage;//当前数据页码
+            $.each(data.rows, function (index, item) {
+                var _href = "xingdtApp://activity/detail/" + item.id + "?title=" + item.name + "&url=" + item.contentPath;
+                var _currentTime = new Date().getTime();//当前时间
+                var _endTime = new Date(item.endTime).getTime();//活动结束时间
+                var _hours = (_endTime - _currentTime) / 1000 / 60 / 60;//当前时间和活动结束时间的差值
+                var _countdown = " ";
+                if (_hours > 0) {
+                    if (_hours > 24) {
+                        _countdown = "活动剩余" + Math.floor(_hours / 24) + "天";
+                    } else {
+                        _countdown = "活动剩余" + Math.floor(_hours) + "小时";
+                    }
+                } else {
+                    _countdown = "活动已过期";
+                }
+                //生成活动项并添加
+                $('<div class="activity"><div class="activity-img">' +
+                    '<a class="highlight" href="' + _href + '">' +
+                    '<img class="align-v-top" src="' + item.photoPath + '" alt="">' +
+                    '</a></div><div class="activity-desc row">' +
+                    '<div class="col activity-title">' + item.name + '</div>' +
+                    '<div class="col activity-countdown align-h-right">' + _countdown + '</div>' +
+                '</div></div>').appendTo($activityList);
+            });
+        } else {
+            $loadMoreBtn.text("无更多活动").off("tap");
+        }
+    }
+</script>
+</body>
+</html>

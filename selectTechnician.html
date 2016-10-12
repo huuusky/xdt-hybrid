@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>选择技师</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/adviser.css">
+</head>
+<body>
+<!-- 选择技师页面 -->
+<div id="adviserPage" class="adviser-page page">
+    <section class="adviser-content content">
+        <!-- 技师列表 -->
+        <div id="adviserList" class="adviser-list">
+            <!--<div id="randomAdviser" class="adviser">
+                <div class="random">
+                    <a id="randomBtn" class="random-btn highlight" href="javascript:;">点击随机按钮 自动分配</a>
+                </div>
+            </div>-->
+            <!-- 数据动态创建 -->
+            <!--<div class="adviser selected">
+                <a class="highlight" href="javascript:;">
+                    <div class="table">
+                        <div class="table-row">
+                            <div class="table-col user-head">
+                                <img class="align-v-middle" src="http://v2.xingdt.com:8020/static/2016/03/04/14/default_head.png" width="80">
+                            </div>
+                            <div class="table-col">
+                                <p>
+                                    <img src="img/gold_medal.png" width="16">
+                                    <img src="img/gold_medal.png" width="16">
+                                </p>
+                                <p class="adviser-name">隔壁老王</p>
+                                <p>已接订单数 12815</p>
+                                <p>
+                                    <img src="img/star_45.png" width="64">
+                                    <span class="price">4.5分</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>-->
+        </div>
+    </section>
+    <!-- 底部按钮 -->
+    <footer>
+        <a id="submitBtn" class="submit-btn highlight" href="javascript:;">确 认</a>
+    </footer>
+    <!-- toast提示框 -->
+    <div id="toast" class="toastWrapper">
+        <div class="toast-text">请选择技师</div>
+    </div>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/touch.js"></script>
+<script>
+    var technicianData = {};//顾问数据Technician
+    var submitTechnicianId = 0;
+    var isSelected = false;
+    var $adviserList = $("#adviserList");//顾问列表
+    var $toast = $("#toast");//顾问列表
+    //获取技师列表数据
+    if (window.fromiOS) {
+        technicianData = window.fromiOS.technicianData;
+    }
+    if (window.fromAndroid) {
+        technicianData = JSON.parse(window.fromAndroid.technicianData());
+    }
+    //创建顾问列表
+    (function (data) {
+        if (data.length > 0) {
+            $.each(data, function (index, item) {
+                $('<div class="adviser"><a class="highlight" href="javascript:;"><div class="table">' +
+                    '<div class="table-row"><div class="table-col user-head">' +
+                    '<img class="align-v-middle" src="' + item.image + '" width="80">' +
+                    '</div><div class="table-col"><p><img src="img/gold_medal.png" width="16"><img src="img/gold_medal.png" width="16"></p>' +
+                    '<p class="adviser-name">' + item.consultantName + '</p><p>已接订单数 ' + item.receivedCount + '</p>' +
+                    '<p><img src="img/star_45.png" width="64"> <span class="price">' + item.ratingStars + '分</span></p>' +
+                '</div></div></div></a></div>').appendTo($adviserList);
+            });
+        }
+    })(technicianData.consultantList);
+    //点击选择顾问
+    $adviserList.on("tap", ".adviser", function () {
+        isSelected = true;
+        var $this = $(this);
+        var index = $this.index();
+        submitTechnicianId = technicianData.consultantList[index].consultantId;
+        $this.addClass("selected").siblings().removeClass("selected");
+    });
+    //点击【确认按钮】
+    $("#submitBtn").on("tap", function () {
+        if (isSelected) {
+            submitData(submitTechnicianId);
+        } else {
+            $toast.show();
+            window.setTimeout(function () {
+                $toast.hide();
+            }, 2000)
+        }
+    });
+    //提交技师数据
+    function submitData(submitTechnicianId) {
+        if (window.fromiOS) {
+            submitTechnician(submitTechnicianId);
+        }
+        if (window.fromAndroid) {
+            window.fromAndroid.submitTechnician(JSON.stringify(submitTechnicianId));
+        }
+    }
+</script>
+</body>
+</html>

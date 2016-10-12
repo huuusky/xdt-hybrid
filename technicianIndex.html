@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>首页</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/technician.css">
+</head>
+<body>
+<!-- 技师端首页 -->
+<div class="index-page page">
+    <!-- 用户信息 -->
+    <div class="user-info table">
+        <div class="table-row">
+            <div class="table-col align-h-center">
+                <img id="adviserHead" class="adviser-head" src="img/adviser_default.png" width="80" alt="">
+            </div>
+            <div class="table-col">
+                <p>
+                    <img src="img/gold_medal.png" width="16" alt="">
+                    <img src="img/gold_medal.png" width="16" alt="">
+                </p>
+                <p id="userName">诸葛亮亮</p>
+                <p >已接单：<span id="receivedOrder">12815</span></p>
+                <div class="score">
+                    <img id="ratinImage" class="align-v-middle" src="img/star_45.png" width="64" alt="">
+                    <span id="ratingStars" class="align-v-middle">3.5分</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 图片轮播 -->
+    <div id="carousel" class="banner">
+        <div class="carousel-wrapper">
+            <ul class="clearfix">
+                <li>
+                    <a class="highlight" href="javascript:;">
+                        <img class="banner-img" src="img/banner_02.jpg" alt="">
+                    </a>
+                </li>
+                <!--<li>
+                    <a class="highlight" href="javascript:;">
+                        <img class="banner-img" src="img/banner_02.jpg" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a class="highlight" href="javascript:;">
+                        <img class="banner-img" src="img/banner_02.jpg" alt="">
+                    </a>
+                </li>-->
+            </ul>
+        </div>
+    </div>
+    <!-- 排名 -->
+    <div class="rank table">
+        <div class="table-row">
+            <div class="table-col col-50">
+                <p class="current-month">本月 <span id="monthlyOrderCount">59</span>单</p>
+                <!--<p>全网第<span id="monthlyOrderRank">0</span>名</p>-->
+            </div>
+            <div class="table-col col-50">
+                <p class="current-month">本月 ¥<span id="monthlyIncomeCount">54892</span></p>
+                <!--<p>全网第<span id="monthlyIncomeRank">0</span>名</p>-->
+            </div>
+        </div>
+    </div>
+    <div class="blank"></div>
+    <!-- 首页菜单 -->
+    <div class="menu table">
+        <div class="table-row">
+            <div class="table-col">
+                <a class="menu-item highlight" href="xingdtApp://index/menu/myTask">
+                    <div class="menu-icon">
+                        <span id="myTaskTip" class="tip">2</span>
+                        <img src="img/technician_index_menu_01.png">
+                    </div>
+                    <p class="menu-title">我的任务</p>
+                </a>
+            </div>
+            <div class="table-col">
+                <a class="menu-item highlight" href="xingdtApp://index/menu/myIncome">
+                    <div class="menu-icon">
+                        <img src="img/technician_index_menu_02.png">
+                    </div>
+                    <p class="menu-title">我的收入</p>
+                </a>
+            </div>
+            <div class="table-col">
+                <a class="menu-item highlight" href="xingdtApp://index/menu/myMessage">
+                    <div class="menu-icon">
+                        <span id="myNewsTip" class="tip">1</span>
+                        <img src="img/technician_index_menu_03.png">
+                    </div>
+                    <p class="menu-title">我的消息</p>
+                </a>
+            </div>
+        </div>
+        <div class="table-row">
+            <div class="table-col">
+                <a class="menu-item highlight" href="xingdtApp://index/menu/myFeedback">
+                    <div class="menu-icon">
+                        <span id="myFeedbackTip" class="tip">13</span>
+                        <img src="img/technician_index_menu_04.png">
+                    </div>
+                    <p class="menu-title">我的评价</p>
+                </a>
+            </div>
+            <div class="table-col">
+                <a class="menu-item highlight" href="xingdtApp://index/menu/statistics">
+                    <div class="menu-icon">
+                        <img src="img/technician_index_menu_05.png">
+                    </div>
+                    <p class="menu-title">综合统计</p>
+                </a>
+            </div>
+            <div class="table-col">
+                <a class="menu-item highlight" href="xingdtApp://index/menu/manual">
+                    <div class="menu-icon">
+                        <img src="img/technician_index_menu_06.png">
+                    </div>
+                    <p class="menu-title">操作手册</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="newVersionDialog" class="modal-layer">
+        <div class="new-version-dialog modal-dialog">
+            <div class="new-version-title">发 现 新 版 本</div>
+            <div class="new-version-text">软件有新版本，请更新后使用！</div>
+            <a href="#" id="newVersionDownloadBtn" class="new-version-download-btn highlight">立即更新</a>
+        </div>
+    </div>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/touch.js"></script>
+<script src="js/carousel.js"></script>
+<script>
+    var indexData = JSON.parse(window.fromAndroid.indexData());//首页数据
+    var currentInstallVersion = window.fromAndroid.appVersion();//本机当前APP版本
+
+    //初始化轮播
+    $("#carousel").carousel();
+
+    //初始化首页数据
+    (function (data) {
+        $("#adviserHead").attr("src", data.employee.image);//用户头像
+        $("#userName").text(data.employee.name || " ");//用户名
+        $("#receivedOrder").text(data.employee.servedCount || " ");//已接单
+        $("#ratingStars").text(data.employee.ratingStars || " " + "分");//评分数
+        $("#monthlyOrderCount").text(data.receiptsByMonth || 0);//月订单数
+        $("#monthlyIncomeCount").text(data.incomeByMonth || 0);//月收入
+        //todo 按单数、收入排名
+        //$("#monthlyOrderRank").text(data.receiptsByMonth || 0);//月订单排名
+        //$("#monthlyIncomeRank").text(data.incomeByMonth || 0);//月收入排名
+
+        //新任务Tip
+        var myTaskTip = $("#myTaskTip");
+        data.taskCount != 0 ? myTaskTip.text(data.taskCount) : myTaskTip.hide();
+        //新消息Tip
+        var myNewsTip = $("#myNewsTip");
+        data.messsageCount != 0 ? myNewsTip.text(data.messsageCount) : myNewsTip.hide();
+        //新评价Tip
+        var myFeedbackTip = $("#myFeedbackTip");
+        data.evaluationCount != 0 ? myFeedbackTip.text(data.evaluationCount) : myFeedbackTip.hide();
+
+        if (currentInstallVersion != indexData.appVersion && currentInstallVersion != "0") {
+            var $newVersionDownloadBtn = $("#newVersionDownloadBtn");
+            /*if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+                $newVersionDownloadBtn.attr("href", "iPhone");
+            } else if (/(Android)/i.test(navigator.userAgent)) {
+                $newVersionDownloadBtn.attr("href", "http://v2.xingdt.com:8020/appStore/xingdt_technician_tengxun.apk");
+            }*/
+            $newVersionDownloadBtn.attr("href", "http://v2.xingdt.com:8020/appStore/xingdt_technician_tengxun.apk");
+            $("#newVersionDialog").show();
+        }
+    })(indexData);
+</script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>喷漆</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/paint.css">
+</head>
+<body>
+<!-- 喷漆页面 -->
+<div id="paintPage" class="paint-page page">
+    <section class="paint-content content">
+        <h3 class="title">请点击选择喷漆部位</h3>
+        <!-- 喷漆区域选择 -->
+        <div id="paint" class="paint">
+            <div id="svgView" class="select-part"></div>
+            <span class="direction-label top">前</span>
+            <span class="direction-label right">右</span>
+            <span class="direction-label bottom">后</span>
+            <span class="direction-label left">左</span>
+            <a href="javascript:;" id="zoomBtn" class="zoom-btn"></a>
+        </div>
+        <!-- 喷漆区域列表 -->
+        <div id="paintPartList" class="part-list clearfix">
+            <div class="col col-50">
+                <a class="part-check" name="A" href="javascript:;">A-车顶</a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="B" href="javascript:;">B-前引擎盖</a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="C" href="javascript:;">C-前保险杠 </a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="D" href="javascript:;">D-前翼子板右侧</a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="E" href="javascript:;">E-前翼子板左侧</a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="F" href="javascript:;">F-前车门右侧</a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="G" href="javascript:;">G-前车门左侧</a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="H" href="javascript:;">H-后车门左侧</a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="I" href="javascript:;">I-后车门右侧</a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="J" href="javascript:;">J-后翼子板右侧</a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="K" href="javascript:;">K-后翼子板左侧</a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="L" href="javascript:;">L-后车盖</a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="M" href="javascript:;">M-后保险杠</a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="N" href="javascript:;">N-右侧下裙边</a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="O" href="javascript:;">O-左侧下裙边</a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="P" href="javascript:;">P-左侧后视镜</a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="Q" href="javascript:;">Q-右侧后视镜</a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="R" href="javascript:;">R-左A柱</a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="S" href="javascript:;">S-左B柱</a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="T" href="javascript:;">T-左C柱</a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="U" href="javascript:;">U-右A柱 </a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="V" href="javascript:;">V-右B柱</a>
+            </div>
+            <div class="col col-50">
+                <a class="part-check" name="W" href="javascript:;">W-右C柱</a>
+            </div>
+            <div class="col col-50">
+                <a id="selectAllPart" class="part-check-select-all" part="X" href="javascript:;">X-全身</a>
+            </div>
+        </div>
+    </section>
+    <!-- 喷漆页面底部信息 -->
+    <footer>
+        <div class="row">
+            <div class="col col-70">
+                喷漆 总金额：<span id="totalMoney" class="price">0</span>元起
+            </div>
+            <div class="col col-30">
+                <a id="nextStep" class="next-step highlight" href="javascript:;">下一步</a>
+            </div>
+        </div>
+    </footer>
+    <!-- 选择钣金对话框 -->
+    <!--<div id="confirmDialog" class="modal-layer">
+        <div class="modal-dialog paint-dialog">
+            <div class="dialog-title">是否需要钣金？</div>
+            <div class="dialog-btn-group">
+                <a id="dialogBtnYes" class="dialog-btn highlight" href="javascript:;">需要</a>
+                <a id="dialogBtnNo" class="dialog-btn highlight" href="javascript:;">不需要</a>
+            </div>
+        </div>
+    </div>-->
+    <!-- toast提示框 -->
+    <div id="toast" class="toastWrapper">
+        <div class="toast-text">请选择喷漆部位</div>
+    </div>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/touch.js"></script>
+<script>
+    var paintPartPrice = 0;//部位价格
+    //部位列表
+    var partList = {
+        paintParts: [],
+        metalParts: []
+    };
+    //与Android或iOS交互, 获取喷漆部位价格
+    if (window.fromAndroid) {paintPartPrice = window.fromAndroid.paintPartPrice().toFixed(2);}
+    //缓存全局变量
+    var $svgView = $("#svgView");
+    var $selectAllPart = $("#selectAllPart");
+    var $svgParts = null;
+    var $partChecks = null;
+    var $needZoomPart = null;
+    //加载SVG文件，在回调中处理点击事件
+    $svgView.load("car.svg", function () {
+        //点击【喷漆svg区域】
+        $svgView.on("tap", ".svg-part", function () {
+            var $this = $(this);
+            var partName = $this.attr("name");
+            $this.toggleClass("selected");
+            if ($this.hasClass("selected")) {
+                partList.paintParts.push(partName);
+                $this.attr("fill", "#ff7000");
+                $(".part-check[name=" + partName + "]").addClass("checked");
+            } else {
+                partList.paintParts.splice(partList.paintParts.indexOf(partName), 1);
+                $this.attr("fill", "#a2a2a2");
+                $(".part-check[name=" + partName + "]").removeClass("checked");
+            }
+            //排序
+            partList.paintParts.sort();
+            //全选
+            partList.paintParts.length === 23 ? $selectAllPart.addClass("checked") : $selectAllPart.removeClass("checked");
+            //设置总价格
+            setTotalPrice();
+        });
+        //点击【svg字母编号】，关联到对应的svg区域
+        $svgView.on("tap", ".svg-label", function () {
+            var labelName = $(this).attr("name");
+            $(".svg-part[name=" + labelName + "]").trigger("tap");
+        });
+        $svgParts = $(".svg-part");
+        $partChecks = $(".part-check");
+        $needZoomPart = $(".svg-part[need-zoom=true]");
+    });
+    //点击【部位列表】，关联到对应的svg区域
+    $("#paintPartList").on("tap", ".part-check", function () {
+        var partName = $(this).attr("name");
+        $(".svg-part[name=" + partName + "]").trigger("tap");
+    });
+    //点击选择【全身】
+    $selectAllPart.on("tap", function () {
+        var $this = $(this);
+        $this.toggleClass("checked");
+        if ($this.hasClass("checked")) {
+            partList.paintParts = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W"];
+            $partChecks.addClass("checked");
+            $svgParts.addClass("selected");
+            $svgParts.attr("fill", "#ff7000");
+        } else {
+            partList.paintParts = [];
+            $partChecks.removeClass("checked");
+            $svgParts.removeClass("selected");
+            $svgParts.attr("fill", "#a2a2a2");
+        }
+        setTotalPrice();
+    });
+    //点击【喷漆页面下一步】按钮
+    var $toast = $("#toast");
+    $("#nextStep").on("tap", function () {
+        if (partList.paintParts.length > 0) {
+            //console.log(JSON.stringify(partList));
+            if (window.fromAndroid) {//Android
+                window.fromAndroid.showPaintDialog(JSON.stringify(partList));
+            } else {//iOS
+                showPaintDialog(partList);
+            }
+        } else {
+            $toast.show();
+            setTimeout(function () {
+                $toast.hide();
+            }, 2000);
+        }
+    });
+    //设置总价格
+    function setTotalPrice() {
+        var totalPrice = (partList.paintParts.length * paintPartPrice).toFixed(2);
+        $("#totalMoney").text(totalPrice);
+    }
+    //设置&更新价格
+    function updatePrice(price) {
+        paintPartPrice = price.toFixed(2);
+        setTotalPrice();
+    }
+    //点击【放大缩小】按钮，局部放大缩小
+    $("#zoomBtn").on("tap", function () {
+        var $this = $(this);
+        $this.toggleClass("zoom");
+        if ($this.hasClass("zoom")) {
+            $needZoomPart.attr("class", "svg-part zoom");
+            $needZoomPart.attr("stroke", "#fff");
+        } else {
+            $needZoomPart.attr("class", "svg-part");
+            $needZoomPart.attr("stroke", 0);
+        }
+    });
+</script>
+</body>
+</html>

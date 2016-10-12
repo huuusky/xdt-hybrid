@@ -1,0 +1,69 @@
+.content {
+    bottom: 0;
+}
+.banner img {
+    width: 100%;
+    vertical-align: top;
+}
+.invite-info {
+    padding: 25px 20px;
+    font-size: 12px;
+}
+.invite-info .logo-col {
+    width: 80px;
+}
+.invite-info .invite-text {
+    position: relative;
+    padding: 10px 10px;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+}
+.invite-info p {
+    word-wrap:break-word;
+    word-break:break-all;
+}
+.invite-info .invite-text:after {
+    position: absolute;
+    display: block;
+    top: calc(50% - 7px);
+    left: -8px;
+    width: 14px;
+    height: 14px;
+    content: " ";
+    -webkit-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+    border-left: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+    background-color: #fff;
+}
+.invite-btn-panel {
+    padding-bottom: 10px;
+}
+.invite-btn {
+    display: block;
+    margin: 0 auto;
+    width: 250px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    font-size: 17px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #d72e31;
+}
+.invite-desc-text {
+    padding: 15px 20px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #474747;
+}
+.invite-desc-text a {
+    color: #fff;
+}
+.invite-desc img {
+    width: 100%;
+    vertical-align: top;
+}
+.invite-desc .top-img img {
+    vertical-align: bottom;
+}

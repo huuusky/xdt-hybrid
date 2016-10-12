@@ -1,0 +1,139 @@
+/*=== 时间轴 ===*/
+.timeline{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #dbdbdb;
+    overflow: hidden;
+}
+.timeline-box {
+    position: relative;
+}
+.timeline-item {
+    float: left;
+    height: 50px;
+    text-align: center;
+}
+.timeline-link {
+    display: block;
+    padding: 10px 0;
+    font-size: 12px;
+    color: #a2a2a2;
+    line-height: 15px;
+    border-left: 1px solid #dbdbdb;
+    background-color: #fff;
+}
+.timeline-item.active .timeline-link {
+    color: #ff7000;
+    background-color: #efefef;
+}
+.timeline-item:first-child .timeline-link {
+    border-left: none;
+}
+.timeline .scroll-btn {
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 25px;
+    height: 50px;
+    background-color: #fff;
+    z-index: 55;
+}
+.timeline .scrollLeft {
+    display: none;
+}
+.timeline .scrollRight {
+    right: 0;
+}
+.timeline .scroll-triangle {
+    display: block;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-bottom: 8px solid transparent; /* left arrow slant */
+    border-top: 8px solid transparent; /* right arrow slant */
+    border-right: 12px solid #dbdbdb; /* bottom, add background color here */
+}
+.timeline .scroll-right-triangle {
+    border-left: 12px solid #dbdbdb; /* bottom, add background color here */
+    border-right: none; /* bottom, add background color here */
+}
+/*=== 商家信息 ===*/
+.merchant {
+    color: #a2a2a2;
+    font-size: 12px;
+}
+.merchant .merchant-top {
+    padding: 15px 0;
+    line-height: 18px;
+}
+.merchant .merchant-name {
+    line-height: 24px;
+    font-size: 14px;
+    font-weight: normal;
+    color: #5f5f5f;
+}
+.merchant .support-item {
+    visibility: hidden;
+}
+.merchant .merchant-bottom {
+    height: 50px;
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+}
+.merchant .tel-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-right: 1px solid #dbdbdb;;
+    background: url("../img/tel.png") center no-repeat;
+    background-size: 25px 25px;
+}
+.merchant .addr-label {
+    color: #5f5f5f;
+}
+.merchant .addr {
+    margin: 0 10px;
+}
+/*=== 优惠列表 ===*/
+.preferential-list {
+    margin-top: 10px;
+    height: 170px;
+    font-size: 12px;
+}
+.preferential-list .table-col {
+    height: 34px;
+    text-align: center;
+    border-bottom: 1px solid #dbdbdb;
+}
+.preferential-list .thead {
+    height: 30px;
+    font-size: 14px;
+    color: #ff7000;
+    background-color: #ffdecf;
+}
+.preferential-list .thead .table-col {
+    border-bottom: none;
+}
+.preferential-list .price {
+    font-size: 14px;
+}
+/*=== 按钮 ===*/
+.btn-panel {
+    padding: 10px;
+}
+.goto-order {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    font-size: 17px;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    background-color: #ff7000;
+}

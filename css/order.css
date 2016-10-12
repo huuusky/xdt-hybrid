@@ -1,0 +1,364 @@
+/*=== 底部订单 ===*/
+footer .row {
+    padding: 0;
+}
+footer .col {
+    height: 100%;
+    line-height: 40px;
+    font-size: 17px;
+}
+footer .col-70 {
+    padding-left: 20px;
+}
+footer .submit-order {
+    display: block;
+    color: #fff;
+    text-align: center;
+    background-color: #ff7000;
+}
+/*=== 商家信息 ===*/
+.merchant-info {
+    padding: 0 10px;
+}
+.merchant-info .merchant-name {
+    position: relative;
+    padding: 15px 10px 10px 30px;
+    border-bottom: 1px solid #dbdbdb;
+    background: url("../img/merchant_icon.png") 5px center no-repeat;
+    background-size: 18px 18px;
+}
+.merchant-info .merchant-addr {
+    padding: 10px 10px 10px 30px;
+    font-size: 12px;
+    color: #a2a2a2;
+    background: url("../img/merchant_addr.png") 5px 10px no-repeat;
+    background-size: 18px 18px;
+}
+.merchant-addr .table-row .table-col:first-child {
+    width: 40px;
+}
+/*=== 卡片 ===*/
+.card {
+    padding: 0 10px;
+}
+.card-title {
+    height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+    font-weight: normal;
+}
+.card-sub-title {
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 20px;
+}
+.card-content-item .table-col {
+    position: relative;
+    padding: 7px 0;
+    border-top: 1px solid #dbdbdb;
+}
+.card-content-item:first-child .table-col {
+    border-top: none;
+}
+.card-content-item .table-col:first-child {
+    border-top: none;
+}
+.card-content .part {
+    font-size: 12px;
+    color: #a2a2a2;
+    line-height: 20px;
+}
+.card-content {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+.card-group .card:nth-child(2) .card-title {
+    border-top: 1px solid #dbdbdb;
+}
+.service .card-title {
+    border-bottom: 1px solid #dbdbdb;
+}
+.recommended .card-title {
+    background: url("../img/recommended.png") no-repeat 90px center;
+    background-size: 14px 14px;
+}
+.recommended .recommended-service-btn {
+    display: block;
+}
+.recommended .expand-icon {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: url("../img/expand.png") center no-repeat;
+    background-size: 10px 5px;
+}
+.recommended .expanded .expand-icon {
+    -webkit-transform: rotateZ(180deg);
+            transform: rotateZ(180deg);
+}
+.card-content .recommended-table {
+    padding: 0 10px;
+    margin-top: 0;
+    border-top: 1px solid #dbdbdb;
+    -webkit-transition: margin-top 0.218s cubic-bezier(.1,.5,.1,1);
+            transition: margin-top 0.218s cubic-bezier(.1,.5,.1,1);
+}
+.card-content .recommended-check {
+    display: inline-block;
+    padding-left: 20px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #a2a2a2;
+    background: url("../img/uncheck.png") left center no-repeat;
+    background-size: 13px 13px;
+}
+.card-content .checked .recommended-check {
+    background-image: url("../img/checked.png");
+}
+.appointment .card-title, .choose-coupon .card-title {
+    background: url("../img/link_icon.png") right center no-repeat;
+    background-size: 15px 10px;
+}
+.appointment .appointment-time {
+    color: #a2a2a2;
+    font-size: 12px;
+}
+.card-title .pickup-switch {
+    display: inline-block;
+    width: 36px;
+    height: 30px;
+    vertical-align: top;
+}
+.pickup-switch .outside-circle {
+    display: block;
+    position: relative;
+    margin-top: 7px;
+    height: 16px;
+    border-radius: 14px;
+    background-color: #f6f6f6;
+}
+.pickup-switch .circle {
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #cecece;
+}
+.pickup-switch.active .outside-circle {
+    background-color: #ff7000;
+}
+.pickup-switch.active .circle {
+    -webkit-transform: translateX(16px);
+            transform: translateX(16px);
+    background-color: #fff;
+}
+.pickup-service .price {
+    display: none;
+    line-height: 30px;
+    vertical-align: top;
+}
+.user-info {
+    padding: 10px;
+}
+.user-info .table-col {
+    height: 32px;
+}
+.user-info .table-row .table-col:last-child {
+    border-bottom: 1px solid #dbdbdb;
+}
+.user-info .table-col .form-input {
+    border: none;
+    width: 80%;
+}
+/*=== 优惠详情弹出框 ===*/
+.preferential-dialog,
+.coupon-dialog {
+    padding: 10px;
+    top: auto;
+    right: auto;
+    left: auto;
+    width: 100%;
+    background-color: #fff;
+}
+.preferential-dialog-content {
+    border: 1px solid #dbdbdb;
+}
+/*=== 时间轴 ===*/
+.timeline{
+    position: relative;
+    margin-top: 5px;
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+}
+.timeline-box {
+    position: relative;
+}
+.timeline-item {
+    float: left;
+    height: 50px;
+    text-align: center;
+}
+.timeline-link {
+    display: block;
+    padding: 10px 0;
+    font-size: 12px;
+    color: #a2a2a2;
+    line-height: 15px;
+    background-color: #fff;
+}
+.timeline-item.active .timeline-link {
+    color: #ff7000;
+    background-color: #efefef;
+}
+.timeline .scroll-btn {
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 25px;
+    height: 50px;
+    background-color: #fff;
+    z-index: 55;
+}
+.timeline .scrollLeft {
+    display: none;
+}
+.timeline .scrollRight {
+    right: 0;
+}
+.timeline .scroll-triangle {
+    display: block;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-bottom: 8px solid transparent; /* left arrow slant */
+    border-top: 8px solid transparent; /* right arrow slant */
+    border-right: 12px solid #dbdbdb; /* bottom, add background color here */
+}
+.timeline .scroll-right-triangle {
+    border-left: 12px solid #dbdbdb; /* bottom, add background color here */
+    border-right: none; /* bottom, add background color here */
+}
+/*=== 优惠列表 ===*/
+.preferential-list {
+    margin-top: 5px;
+    height: 170px;
+    font-size: 12px;
+    color: #a2a2a2;
+}
+.preferential-list .table-col {
+    height: 34px;
+    text-align: center;
+    border-bottom: 1px solid #dbdbdb;
+}
+.preferential-list .thead {
+    height: 30px;
+    background-color: #efefef;
+}
+.preferential-list .thead .table-col {
+    border-bottom: none;
+    color: #5f5f5f;
+}
+/*.preferential-list .price {
+    font-size: 14px;
+}*/
+.preferential-list .table-row .table-col:first-child {
+    background: url("../img/uncheck.png") 10px center no-repeat;
+    background-size: 13px 13px;
+}
+.preferential-list .selected {
+    color: #5f5f5f;
+}
+.preferential-list .selected .table-col:first-child {
+    background-image: url("../img/checked.png");
+}
+.preferential-list .thead .table-col:first-child {
+    background: transparent;
+}
+.dialog-btn-group {
+    padding-top: 10px;
+    text-align: center;
+}
+.dialog-btn {
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 3px;
+    background-color: #efefef;
+}
+.ok-btn {
+    margin-right: 30px;
+    background-color: #ffdecf;
+}
+/*=== 优惠券 ===*/
+.choose-coupon {
+    margin-top: 0;
+}
+.choose-coupon .coupon-price {
+    display: none;
+    float: right;
+    margin-right: 20px;
+}
+.coupon-dialog-wrapper {
+    background-color: #fff;
+    overflow: hidden;
+}
+.coupon-dialog .coupon {
+    margin-bottom: 10px;
+}
+.coupon-dialog .coupon-dialog-title {
+    height: 40px;
+    line-height: 40px;
+}
+.coupon-dialog-content {
+    height: 256px;
+    overflow-y: scroll;
+}
+.coupon-dialog .cancel-coupon-btn {
+    display: block;
+    float: right;
+    width: 50px;
+    text-align: right;
+}
+.coupon-dialog .coupon-content {
+    padding: 5px 0;
+    font-size: 12px;
+    border: 1px solid #dbdbdb;
+}
+.coupon-dialog .coupon-content.not-use {
+    height: 40px;
+    color: #ff7000;
+    line-height: 30px;
+    text-align: center;
+}
+.coupon-dialog .table-col {
+    height: 50px;
+}
+.coupon-dialog .coupon-price {
+    text-align: center;
+    color: #ff7000;
+    border-right: 1px solid #dbdbdb;
+}
+.coupon-dialog .coupon-price strong {
+    font-size: 20px;
+}
+.coupon-dialog .coupon-desc {
+    padding-left: 10px;
+    color: #a2a2a2;
+    line-height: 16px;
+}
+.coupon-dialog .coupon-desc .title {
+    color: #5f5f5f;
+    font-size: 14px;
+}

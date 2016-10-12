@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>违章查询结果</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/illegalResult.css">
+</head>
+<body>
+<div class="page">
+    <section class="content">
+        <div class="illegalResult">
+            <div class="car-model table">
+                <div class="table-row">
+                    <div class="table-col col-15">
+                        <img src="img/car_brand_img01.jpg" width="30">
+                    </div>
+                    <div class="table-col">
+                        <p>宝马X6 2015款 xDrive35i</p>
+                        <p>领先型</p>
+                    </div>
+                </div>
+            </div>
+            <div class="car-info">
+                <p class="fr">查询地：<span id="queryArea" class="highlight-color">深圳</span></p>
+                <p>车牌号：<span id="carNum" class="highlight-color">粤B56888</span></p>
+            </div>
+            <div class="illegal-list">
+                <div class="illegal-item table">
+                    <div class="table-row">
+                        <div class="table-col">时间：</div>
+                        <div class="table-col">2015年12月25日  17:25:36</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-col">地点：</div>
+                        <div class="table-col">广东省深圳市龙华新区清湖市场综合楼马自达汽车4S店5楼左侧</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-col">扣分：</div>
+                        <div class="table-col highlight-color">2分</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-col">罚款：</div>
+                        <div class="table-col highlight-color">200元</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-col">行为：</div>
+                        <div class="table-col">机动车违反规定停放、临时停车且驾驶人不在现场或者驾驶人虽在现场但未立即驶离，妨碍其他车辆行人通行</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="js/zepto.js"></script>
+<script>
+    var illegalResultData = null;
+    if (window.fromiOS) {
+        illegalResultData = window.fromiOS.illegalResultData;
+    }
+    if (window.fromAndroid) {
+        illegalResultData = JSON.parse(window.fromAndroid.illegalResultData());
+    }
+
+    if (illegalResultData != null) {
+        alert(JSON.stringify(illegalResultData));
+        $("#queryArea").text();
+        $("#carNum").text();
+
+        var htmlTpl = '<div class="illegal-item table">' +
+                '<div class="table-row"><div class="table-col">时间：</div><div class="table-col">2015年12月25日 17:25:36</div></div>' +
+                '<div class="table-row"><div class="table-col">地点：</div><div class="table-col">广东省深圳市龙华新区清湖市场综合楼马自达汽车4S店5楼左侧</div></div>' +
+                '<div class="table-row"><div class="table-col">扣分：</div><div class="table-col highlight-color">2分</div></div>' +
+                '<div class="table-row"><div class="table-col">罚款：</div><div class="table-col highlight-color">200元</div></div>' +
+                '<div class="table-row"><div class="table-col">行为：</div><div class="table-col">机动车违反规定停放、临时停车且驾驶人不在现场或者驾驶人虽在现场但未立即驶离，妨碍其他车辆行人通行</div></div>' +
+                '</div>';
+    }
+</script>
+</body>
+</html>

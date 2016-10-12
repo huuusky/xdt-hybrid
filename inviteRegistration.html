@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>推荐有奖</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/inviteRegistration.css">
+</head>
+<body>
+<!-- 推荐有奖页面 -->
+<div class="invite-registration-page page">
+    <section class="content">
+        <div class="banner">
+            <img src="img/invite_registration_02.png">
+        </div>
+        <div class="invite-info">
+            <div class="invite-info-content table">
+                <div class="table-row">
+                    <div class="table-col logo-col">
+                        <img src="img/logo.png" width="60">
+                    </div>
+                    <div class="table-col">
+                        <div class="invite-text">
+                            <p>您是行得通的老朋友了，为您备了专属推荐链接，立刻推荐给行得通的新朋友，每成功邀请一位，即送<span class="price">20元洗车</span>优惠券一张。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="invite-btn-panel">
+            <a id="inviteBtn" class="invite-btn highlight" href="javascript:;">推 荐 好 友</a>
+        </div>
+        <div class="invite-desc">
+            <div class="top-img">
+                <img src="img/invite-desc_border_01.jpg">
+            </div>
+            <div class="invite-desc-text">
+                <p>【活动说明】：</p>
+                <div class="table">
+                    <div class="table-row">
+                        <div class="table-col align-v-top">1.</div>
+                        <div class="table-col">推荐好友成功下载注册行得通的推荐人，可获得行得通自营店20元洗车优惠券一张；</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-col align-v-top">2.</div>
+                        <div class="table-col">优惠券有效期自领用之日起90天；</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-col align-v-top">3.</div>
+                        <div class="table-col">每个手机号码仅限领用一次；</div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-col align-v-top">4.</div>
+                        <div class="table-col">
+                            <p>有任何疑问可拨打行的通客服电话：</p>
+                            <p><a href="tel:4006-172-6688">4006-172-6688</a></p>
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-col align-v-top">5.</div>
+                        <div class="table-col">最终解释权归深圳行得通科技有限公司所有。</div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-img">
+                <img src="img/invite-desc_border_02.jpg">
+            </div>
+        </div>
+    </section>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/touch.js"></script>
+<script>
+    var shareData = {
+        title: "行得通注册就送200元喷漆券，小划痕不用再等着报保险了！", // 分享标题
+        desc: "6月4日至12日，高端汽车服务提供商行得通携手近百家4S店，六城联动，600万喷漆券倾情放送！", // 分享描述
+        link: "http://v2.xingdt.com:8020/XingdtEmbedPage/register.html", // 分享链接
+        imgUrl: "http://v2.xingdt.com:8020/XingdtEmbedPage/img/share_01.jpg" // 分享图标
+    };
+
+    $("#inviteBtn").on("tap", function () {
+        if (window.fromiOS) {
+            share(shareData);
+        }
+        if (window.fromAndroid) {
+            window.fromAndroid.share(JSON.stringify(shareData));
+        }
+    });
+
+</script>
+</body>
+</html>

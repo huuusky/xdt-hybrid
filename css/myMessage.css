@@ -1,0 +1,27 @@
+.content {
+    padding: 10px;
+    bottom: 0;
+    background-color: #efefef;
+}
+.message {
+    padding: 0 10px;
+    margin-bottom: 10px;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    background-color: #fff;
+    overflow: hidden;
+}
+.message-header {
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #dbdbdb;
+}
+.message-content {
+    padding: 10px 0;
+}
+.message-title {
+    color: #ff7000;
+}
+.message-text {
+    color: #a2a2a2;
+}

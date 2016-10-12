@@ -1,0 +1,48 @@
+.index-menu-page {
+    padding: 15px 15px 0 15px;
+}
+.menu .table-row .table-col {
+    padding-bottom: 15px;
+}
+.menu .table-row .table-col:first-child {
+    padding-right: 7.5px;
+}
+.menu .table-row .table-col:last-child {
+    padding-left: 7.5px;
+}
+.menu-item {
+    text-align: center;
+    border: 1px solid #ff7000;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.menu-btn {
+    display: block;
+    padding: 10px 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+.menu-img {
+    height: 60px;
+    background: url("../img/menu_01.png") center no-repeat;
+    background-size: 60px;
+}
+.menu-img02 {
+    background-image: url("../img/menu_02.png");
+}
+.menu-img03 {
+    background-image: url("../img/menu_03.png");
+}
+.menu-img04 {
+    background-image: url("../img/menu_04.png");
+}
+.menu-title {
+    color: #ff7000;
+    font-size: 14px;
+    line-height: 20px;
+}
+.menu-desc {
+    font-size: 10px;
+    line-height: 18px;
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>综合统计</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/statistics.css">
+</head>
+<body>
+<!-- 综合统计页面 -->
+<div class="statistics-page page">
+    <header class="table">
+        <div class="table-col">
+            <p class="title">按订单日期查询</p>
+            <a class="search-btn highlight" href="javascript:;">搜索</a>
+            <input class="date-input" type="date"><span class="between">至</span><input class="date-input" type="date">
+        </div>
+    </header>
+    <section class="content">
+        <div class="statistics-item">
+            <div class="statistics-item-title">我的预约</div>
+            <div class="statistics-item-content">
+                <div class="table">
+                    <div class="table-row">
+                        <div class="table-col align-h-center col-40">
+                            <div id="appointChart" class="statistics-chart"></div>
+                        </div>
+                        <div class="table-col col-60">
+                            <div class="statistics-desc">
+                                <p>预约单数：128单</p>
+                                <p>转换单数：65单</p>
+                                <p>转&nbsp;&nbsp;换&nbsp;&nbsp;率：40%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="statistics-item">
+            <div class="statistics-item-title">我的订单</div>
+            <div class="statistics-item-content">
+                <div class="table">
+                    <div class="table-row">
+                        <div class="table-col align-h-center col-40">
+                            <div id="orderChart" class="statistics-chart"></div>
+                        </div>
+                        <div class="table-col col-60">
+                            <div class="statistics-desc">
+                                <p>成交单数：128单</p>
+                                <p>好评单数：65单</p>
+                                <p>好&nbsp;&nbsp;评&nbsp;&nbsp;率：40%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="statistics-item">
+            <div class="statistics-item-title">我的业绩</div>
+            <div class="statistics-item-content">
+                <div class="table">
+                    <div class="table-row">
+                        <div class="table-col align-h-center col-40">
+                            <div id="featChart" class="statistics-chart"></div>
+                        </div>
+                        <div class="table-col col-60">
+                            <div class="statistics-desc">
+                                <p>业绩总额：564858元</p>
+                                <p>提成比例：8%</p>
+                                <p>提成金额：25636元</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="statistics-item">
+            <div class="statistics-item-title">全网排名</div>
+            <div class="statistics-item-content">
+                <div class="table">
+                    <div class="table-row">
+                        <div class="table-col">
+                            <div class="statistics-desc no-border">
+                                <p>收入排名：564858</p>
+                                <p>订单排名：25456</p>
+                                <p>技师/服务排名：25636</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/touch.js"></script>
+<script src="js/doughnutChart.js"></script>
+<script src="js/constant.js"></script>
+<script>
+    $("#appointChart").doughnut({
+        width: 70,
+        height: 70,
+        r: 30,
+        percent: 40
+    });
+    $("#orderChart").doughnut({
+        width: 70,
+        height: 70,
+        r: 30,
+        percent: 40,
+        stroke: "#00ccff"
+    });
+    $("#featChart").doughnut({
+        width: 70,
+        height: 70,
+        r: 30,
+        percent: 8,
+        stroke: "#be6dec"
+    });
+</script>
+</body>
+</html>

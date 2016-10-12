@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>订单流程</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/orderProcess.css">
+</head>
+<body>
+<!-- 订单流程页面 -->
+<div class="order-process-page page">
+    <!-- 头部信息 -->
+    <header class="table">
+        <div class="table-row">
+            <div class="table-col col-30">
+                <span class="ml20">订单编号：</span>
+            </div>
+            <div id="orderNumber" class="table-col align-h-center">0</div>
+        </div>
+    </header>
+    <!-- 步骤图 -->
+    <div id="step" class="step table">
+        <div class="step-item table-row">
+            <div class="step-label table-col">
+                <div class="table-col">
+                    <span class="step-label-text">待服务</span>
+                </div>
+            </div>
+            <div class="step-track table-col">
+                <div class="track-outline first"></div>
+                <div class="track-ring">
+                    <div class="track-circle"></div>
+                </div>
+                <div class="track-bottom-line"></div>
+            </div>
+            <div class="table-col">
+                <div class="step-desc">
+                    <p class="step-desc-text">订单已付款 等待技师接单</p>
+                    <p class="step-desc-time">2016-01-15 14:20:36</p>
+                </div>
+            </div>
+        </div>
+        <div class="step-item table-row">
+            <div class="step-label table-col">
+                <span class="step-label-text">服务中</span>
+            </div>
+            <div class="step-track table-col">
+                <div class="track-outline"></div>
+                <div class="track-top-line"></div>
+                <div class="track-ring">
+                    <div class="track-circle"></div>
+                </div>
+                <div class="track-bottom-line"></div>
+            </div>
+            <div class="table-col">
+                <div class="step-desc align-v-middle">
+                    <p class="step-desc-text">技师已接单 进行服务中</p>
+                    <p class="step-desc-time">2016-01-16 10:30:20</p>
+                </div>
+                <a id="monitorBtn" class="monitor-btn highlight align-v-middle" href="javascript:;"></a>
+            </div>
+        </div>
+        <div class="step-item table-row">
+            <div class="step-label table-col">
+                <span class="step-label-text">待评价</span>
+            </div>
+            <div class="step-track table-col">
+                <div class="track-outline"></div>
+                <div class="track-top-line"></div>
+                <div class="track-ring">
+                    <div class="track-circle"></div>
+                </div>
+                <div class="track-bottom-line"></div>
+            </div>
+            <div class="table-col">
+                <div class="step-desc">
+                    <p class="step-desc-text">服务已完成 请评价</p>
+                    <p class="step-desc-time">2016-01-16 12:41:23</p>
+                </div>
+            </div>
+        </div>
+        <div class="step-item table-row">
+            <div class="step-label table-col">
+                <span class="step-label-text">已完成</span>
+            </div>
+            <div class="step-track table-col">
+                <div class="track-outline last"></div>
+                <div class="track-top-line"></div>
+                <div class="track-ring">
+                    <div class="track-circle"></div>
+                </div>
+            </div>
+            <div class="table-col">
+                <div class="step-desc">
+                    <p class="step-desc-text">订单交易成功</p>
+                    <p class="step-desc-time">2016-01-16 16:53:01</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/step.js"></script>
+<script>
+    var orderProcessData = {};
+
+    //获取订单详情数据
+    if (window.fromiOS) {
+        orderProcessData = window.fromiOS.orderProcessData;
+    }
+    if (window.fromAndroid) {
+        orderProcessData = JSON.parse(window.fromAndroid.orderProcessData());
+    }
+    //alert(JSON.stringify(orderProcessData));
+    //设置订单号
+    $("#orderNumber").text(orderProcessData[0].orderNo);
+    setStep(orderProcessData.length);
+    //设置步数，从1开始计数
+    function setStep(process) {
+        $("#step").step({
+            currentStep: process,
+            updateFn: function (stepList) {
+                $.each(orderProcessData, function (index, element) {
+                    var $step = stepList.eq(index);
+                    //$this.find(".step-desc-text").text(element.nodeName || " ");
+                    $step.find(".step-desc-time").text(element.operateTime || " ");
+                });
+            }
+        });
+    }
+
+    $("#monitorBtn").on("tap", function () {
+        alert("无视频信息！");
+    });
+</script>
+</body>
+</html>

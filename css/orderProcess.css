@@ -1,0 +1,142 @@
+header {
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    background-color: #dbdbdb;
+}
+header:after {
+    position: absolute;
+    top: 40px;
+    left: 65px;
+    content: " ";
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 15px solid #dbdbdb;
+}
+.step {
+    margin-top: 20px;
+}
+.step .table-col {
+    height: 80px;
+}
+.step .step-label {
+    width: 65px;
+}
+.step .step-track  {
+    position: relative;
+    width: 40px;
+    overflow: hidden;
+}
+.step .step-desc  {
+    display: inline-block;
+    padding: 10px;
+    margin-left: 10px;
+    visibility: hidden;
+    width: 160px;
+    height: 50px;
+    font-size: 12px;
+    line-height: 15px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+.step .monitor-btn {
+    display: inline-block;
+    visibility: hidden;
+    width: 25px;
+    height: 25px;
+    background: url("../img/monitor_01.png") center no-repeat;
+    background-size: 21px 21px;
+}
+.step .current-step .monitor-btn {
+    visibility: visible;
+}
+.step .current-step .step-desc {
+    background-color: #ffdecf;
+}
+.step .step-over .step-desc, .step .current-step .step-desc {
+    visibility: visible;
+}
+.step .track-ring, .step .track-circle {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #ffdecf;
+    z-index: 20;
+}
+.step .track-circle {
+    width: 8px;
+    height: 8px;
+    border: none;
+    background-color: #fff;
+    color: #fff;
+    z-index: 30;
+}
+.step .track-circle:after {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 2px;
+    width: 3px;
+    height: 5px;
+    content: " ";
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    -webkit-transform: rotateZ(30deg);
+    transform: rotateZ(35deg);
+    z-index: 40;
+}
+.step .step-over .track-circle:after {
+    display: block;
+}
+.step .track-outline {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 3px);
+    width: 6px;
+    height: 100%;
+    background-color: #ffdecf;
+    z-index: 10;
+}
+.step .track-outline.first {
+    top: 50%;
+}
+.step .track-outline.last {
+    top: -50%;
+}
+.step .track-top-line, .step .track-bottom-line {
+    display: none;
+    position: absolute;
+    top: -3px;
+    left: calc(50% - 1px);
+    width: 2px;
+    height: 50%;
+    background-color: #ff7000;
+    z-index: 25;
+}
+.step .track-bottom-line {
+    top: calc(50% + 3px);
+}
+.step .step-over .track-circle {
+    background-color: #ff7000;
+}
+.step .current-step .track-circle, .step .step-over .track-circle {
+    background-color: #ff7000;
+}
+.step .current-step .track-top-line,
+.step .step-over .track-top-line, .step .step-over .track-bottom-line {
+    display: block;
+}
+.step .step-label-text {
+    margin-left: 20px;
+}
+.step .current-step .step-label-text {
+    color: #ff7000;
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>我的任务</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/technician.css">
+</head>
+<body>
+<!-- 我的任务页面 -->
+<div class="my-task-page page">
+    <!-- 任务菜单 -->
+    <div class="menu table">
+        <div class="table-row">
+            <div class="table-col">
+                <a class="menu-item highlight" href="xingdtApp://myTask/menu/determined">
+                    <div class="menu-icon">
+                        <span id="determinedTip" class="tip">0</span>
+                        <img src="img/task_menu_01.png">
+                    </div>
+                    <p class="menu-title">待确认</p>
+                </a>
+            </div>
+            <div class="table-col">
+                <a class="menu-item highlight" href="xingdtApp://myTask/menu/pickup">
+                    <div class="menu-icon">
+                        <span id="pickupTip" class="tip">0</span>
+                        <img src="img/task_menu_02.png">
+                    </div>
+                    <p class="menu-title">待接车</p>
+                </a>
+            </div>
+            <div class="table-col">
+                <a class="menu-item highlight" href="xingdtApp://myTask/menu/billing">
+                    <div class="menu-icon">
+                        <span id="billingTip" class="tip">0</span>
+                        <img src="img/task_menu_03.png">
+                    </div>
+                    <p class="menu-title">待开单</p>
+                </a>
+            </div>
+        </div>
+        <div class="table-row">
+            <div class="table-col">
+                <a class="menu-item highlight" href="xingdtApp://myTask/menu/dispatch">
+                    <div class="menu-icon">
+                        <span id="dispatchTip" class="tip">0</span>
+                        <img src="img/task_menu_04.png">
+                    </div>
+                    <p class="menu-title">待派工</p>
+                </a>
+            </div>
+            <div class="table-col">
+                <a class="menu-item highlight" href="xingdtApp://myTask/menu/busywork">
+                    <div class="menu-icon">
+                        <span id="busyworkTip" class="tip">0</span>
+                        <img src="img/task_menu_05.png">
+                    </div>
+                    <p class="menu-title">待作业</p>
+                </a>
+            </div>
+            <div class="table-col">
+                <a class="menu-item highlight" href="xingdtApp://myTask/menu/jobDone">
+                    <div class="menu-icon">
+                        <span id="jobDoneTip" class="tip">0</span>
+                        <img src="img/task_menu_06.png">
+                    </div>
+                    <p class="menu-title">待完工</p>
+                </a>
+            </div>
+        </div>
+        <div class="table-row">
+            <div class="table-col">
+                <a class="menu-item highlight" href="xingdtApp://myTask/menu/settlement">
+                    <div class="menu-icon">
+                        <img src="img/task_menu_07.png">
+                    </div>
+                    <p class="menu-title">待结算</p>
+                </a>
+            </div>
+            <div class="table-col">
+                <a class="menu-item highlight" href="xingdtApp://myTask/menu/completion">
+                    <div class="menu-icon">
+                        <img src="img/task_menu_08.png">
+                    </div>
+                    <p class="menu-title">已完成</p>
+                </a>
+            </div>
+            <div class="table-col">
+                <a class="menu-item highlight" href="xingdtApp://myTask/menu/confirmConsume">
+                    <div class="menu-icon">
+                        <img src="img/task_menu_09.png">
+                    </div>
+                    <p class="menu-title">消费确认</p>
+                </a>
+            </div>
+        </div>
+        <div class="table-row">
+            <div class="table-col">
+                <a class="menu-item highlight" href="xingdtApp://myTask/menu/createQRCode">
+                    <div class="menu-icon">
+                        <img src="img/task_menu_10.png">
+                    </div>
+                    <p class="menu-title">生成二维码</p>
+                </a>
+            </div>
+            <div class="table-col"></div>
+            <div class="table-col"></div>
+        </div>
+    </div>
+</div>
+<script src="js/zepto.min.js"></script>
+<script>
+    //设置我的任务提示框
+    var $determinedTip = $("#determinedTip");//待确认Tip
+    var $pickupTip = $("#pickupTip");//待接车Tip
+    var $billingTip = $("#billingTip");//待开单Tip
+    var $dispatchTip = $("#dispatchTip");//待派工Tip
+    var $busyworkTip = $("#busyworkTip");//待作业Tip
+    var $jobDoneTip = $("#jobDoneTip");//待完工Tip
+    function setTip(data) {
+        //待确认Tip
+        data.toConfirm != 0 ? $determinedTip.text(data.toConfirm).show() : $determinedTip.hide();
+        //待接车Tip
+        data.toReceive != 0 ? $pickupTip.text(data.toReceive).show() : $pickupTip.hide();
+        //待开单Tip
+        data.toBill != 0 ? $billingTip.text(data.toBill).show() : $billingTip.hide();
+        //待派工Tip
+        data.toDisapatch != 0 ? $dispatchTip.text(data.toDisapatch).show() : $dispatchTip.hide();
+        //待作业Tip
+        data.toWork != 0 ? $busyworkTip.text(data.toWork).show() : $busyworkTip.hide();
+        //待完工Tip
+        data.toComplete != 0 ? $jobDoneTip.text(data.toComplete).show() : $jobDoneTip.hide();
+    }
+</script>
+</body>
+</html>

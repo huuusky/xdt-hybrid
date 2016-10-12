@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>我的消息</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/myMessage.css">
+</head>
+<body>
+<!-- 我的消息页面 -->
+<div class="my-news-page page">
+    <section class="content">
+        <!--消息列表-->
+        <div id="messageList" class="message-list">
+            <!-- 数据动态生成 -->
+            <!--<div class="message">
+                <div class="message-header">
+                    <span class="news-time fr">11:56</span>
+                    <span class="news-type">系统消息</span>
+                </div>
+                <div class="message-content">
+                    <a class="highlight" href="javascript:;">
+                        <p class="message-title">行得通提醒您：客户已经购买服务</p>
+                        <p class="message-text">客户15817450842已成功订购您的服务马自达汽车CX-5冬季保养套餐等多项。点击查看</p>
+                    </a>
+                </div>
+            </div>-->
+        </div>
+        <!-- 加载更多 -->
+        <div id="loadMore" class="load-more align-h-center">
+            <a id="loadMoreBtn" class="load-more-btn highlight" href="javascript:;">点击加载更多</a>
+            <p id="loadMoreProcess" class="load-more-process">
+                <img class="align-v-middle" src="img/loading.gif" width="16" alt="">
+                <span class="align-v-middle">正在加载...</span>
+            </p>
+        </div>
+    </section>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/touch.js"></script>
+<script>
+    var myMessageData = JSON.parse(window.fromAndroid.myMessageData());//我的消息数据
+    var page = 0;//消息初始页数
+    var $messageList = $("#messageList");//评论列表
+    var $loadMore = $("#loadMore");//加载更多
+    var $loadMoreBtn = $("#loadMoreBtn");//加载更多按钮
+    var $loadMoreProcess = $("#loadMoreProcess");//正在加载提示
+
+    //初始化评论列表数据
+    createMessage(myMessageData);
+    //点击【加载更多】按钮，传入页码请求数据
+    $loadMoreBtn.on("tap", function () {
+        $loadMoreBtn.hide();
+        $loadMoreProcess.show();
+
+        page++;//页码加1
+        window.fromAndroid.loadMore(page);//调用Android方法加载数据
+    });
+    //更新页面内容,Android调用此方法更新页面数据
+    function updateContent(data) {
+        $loadMoreBtn.show();
+        $loadMoreProcess.hide();
+        createMessage(data);
+    }
+    //生成页面评价内容
+    function createMessage(data) {
+        page = data.currentPage;//当前数据页码
+        //遍历消息列表
+        if (data.messages.length > 0) {
+            $.each(data.messages, function (index, item) {
+                var _messageFrom = item.messageSrcType == 0 ? "系统消息" : "商家推送";
+                $('<div class="message"><div class="message-header">' +
+                    '<span class="news-time fr">' + item.pushTime + '</span><span class="news-type">' + _messageFrom + '</span></div>' +
+                    '<div class="message-content"><a class="highlight" href="javascript:;">' +
+                    '<p class="message-title">' + item.title + '</p>' +
+                    '<p class="message-text">' + item.content + '</p>' +
+                '</a></div></div>').appendTo($messageList);
+            });
+        } else {
+            $loadMoreBtn.text("无更多消息");
+        }
+    }
+</script>
+</body>
+</html>

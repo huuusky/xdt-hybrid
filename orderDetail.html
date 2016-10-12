@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>订单详情</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/orderDetail.css">
+</head>
+<body>
+<!-- 订单详情页面 -->
+<div class="order-detail-page page">
+    <header class="align-h-center">
+        <a id="tel" class="tel highlight" href="tel:400-172-6688">服务热线：400-172-6688</a>
+    </header>
+    <section class="content">
+        <div class="order-item">
+            <p class="item-title">订单信息</p>
+            <div class="table">
+                <div class="table-row">
+                    <div class="table-col order-item-label">订单编号：</div>
+                    <div id="orderNumber" class="table-col">0</div>
+                </div>
+                <div id="serviceCode" class="service-code table-row">
+                    <div class="table-col order-item-label">服&nbsp;&nbsp;务&nbsp;&nbsp;码：</div>
+                    <div class="table-col"><span id="verifyCode" class="price"></span><!--<span class="item-desc">（未使用）</span>--></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-col order-item-label">订单总额：</div>
+                    <div class="table-col price">¥<span id="totalPrice">0</span></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-col order-item-label">优&nbsp;&nbsp;惠&nbsp;&nbsp;券：</div>
+                    <div class="table-col"><span id="coupon">-¥0</span></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-col order-item-label">订单时间：</div>
+                    <div id="placeOrderTime" class="table-col"></div>
+                </div>
+            </div>
+        </div>
+        <div class="order-item">
+            <p class="item-title">服务信息</p>
+            <div class="table">
+                <div class="table-row">
+                    <div class="table-col order-item-label">车&nbsp;&nbsp;牌&nbsp;&nbsp;号：</div>
+                    <div id="carNumber" class="table-col"></div>
+                </div>
+                <!--<div class="table-row">
+                    <div class="table-col order-item-label">行驶里程：</div>
+                    <div class="table-col"><span id="drivingDistance">0</span>公里</div>
+                </div>-->
+                <div class="table-row">
+                    <div class="table-col order-item-label">预约时间：</div>
+                    <div id="appointmentTime" class="table-col"></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-col order-item-label">商家名称：</div>
+                    <div id="merchantName" class="table-col"></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-col order-item-label">商家地址：</div>
+                    <div id="merchantAddress" class="table-col"></div>
+                </div>
+            </div>
+        </div>
+        <div class="order-item">
+            <p class="item-title">服务项目</p>
+            <div id="serviceTable" class="service-table table">
+                <!-- 数据动态创建 -->
+                <!--<div class="table-row">
+                    <div class="table-col order-item-label">保养项目：</div>
+                    <div class="table-col">
+                        <p><span class="fr price">¥256</span>更换机油</p>
+                        <p class="item-desc">美孚4L发动机机油</p>
+                        <p><span class="fr price">¥688</span>更换轮胎</p>
+                        <p class="item-desc">米其林轮胎205/55R16</p>
+                    </div>
+                </div>
+                <div class="table-row">
+                    <div class="table-col order-item-label">钣金项目：</div>
+                    <div class="table-col">
+                        <p><span class="fr price">¥258</span>车顶</p>
+                        <p><span class="fr price">¥258</span>右前门</p>
+                        <p><span class="fr price">¥258</span>左后门</p>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+
+        <div id="pickupInfo" class="order-item">
+            <p class="item-title">取送车信息</p>
+            <div class="table">
+                <!--<div class="table-row">
+                    <div class="table-col order-item-label">取车费用：</div>
+                    <div class="table-col"><span id="onSiteCost" class="fr price">¥60</span>取车、送车总费用</div>
+                </div>-->
+                <div class="table-row">
+                    <div class="table-col order-item-label">取车地址：</div>
+                    <div id="takeAddress" class="table-col"></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-col order-item-label">取车时间：</div>
+                    <div id="takeTime" class="table-col"></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-col order-item-label">送车地址：</div>
+                    <div id="sendAddress" class="table-col"></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-col order-item-label">代驾工号：</div>
+                    <div id="designatedDriver" class="table-col"></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-col order-item-label">联系电话：</div>
+                    <div id="designatedDriverTel" class="table-col"></div>
+                </div>
+            </div>
+        </div>
+        <div class="order-item">
+            <p class="item-title">联系人信息</p>
+            <div class="table">
+                <div class="table-row">
+                    <div class="table-col order-item-label">联&nbsp;&nbsp;系&nbsp;&nbsp;人：</div>
+                    <div id="contactsName" class="table-col"></div>
+                </div>
+                <div class="table-row">
+                    <div class="table-col order-item-label">电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：</div>
+                    <div id="contactsPhone" class="table-col"></div>
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <!-- 自营店信息 -->
+        <div id="serviceNetwork" class="card service-network">
+            <div class="service-network-title">服务网点</div>
+        </div>
+    </section>
+    <footer class="footer">
+        <a id="payBtn" class="pay-btn highlight" href="javascript:;">去 付 款</a>
+    </footer>
+</div>
+<script src="js/zepto.min.js"></script>
+<script src="js/touch.js"></script>
+<script>
+    var orderDetailData = {};
+    //获取订单详情信息
+    if (window.fromiOS) {
+        orderDetailData = window.fromiOS.orderDetailData;
+    }
+    if (window.fromAndroid) {
+        orderDetailData = JSON.parse(window.fromAndroid.orderDetailData());
+    }
+    //alert(JSON.stringify(orderDetailData));
+    //初始化订单详情信息
+    var $serviceTable = $("#serviceTable");
+    (function (detail) {
+        //更新订单状态
+        updateOrderState();
+
+        //订单信息
+        $("#orderNumber").text(detail.orderInfo.orderNo || " ");//订单编号
+        $("#verifyCode").text(detail.orderInfo.verifyCode || " ");//订单服务码
+        $("#totalPrice").text(detail.orderInfo.totalAmount || " ");//订单总额
+        if (detail.orderInfo.ticketAmount) {//优惠券金额
+            $("#coupon").text("-¥" + detail.orderInfo.ticketAmount || " ");
+        }
+        $("#placeOrderTime").text(detail.orderInfo.createDate || " ");//订单创建时间
+        //服务信息
+        $("#carNumber").text(detail.serviceInfo.carLicenseNumber || " ");//车牌号
+        //$("#drivingDistance").text(detail.serviceInfo.mileage || " ");//行驶里程
+        $("#appointmentTime").text(detail.serviceInfo.appointment || " ");//预约时间
+        $("#merchantName").text(detail.serviceInfo.shopName || " ");//商家名称
+        $("#merchantAddress").text(detail.serviceInfo.shopAddress || " ");//商家地址
+        //服务项目
+        $.each(detail.serviceProject, function (index, element) {
+            var $row = $('<div class="table-row"><div class="table-col order-item-label">' + element.title + '：</div><div class="service-list table-col"></div></div>');
+            var $col = $row.find(".service-list");
+            if (element.itemDescArray) {
+                var price = (element.totalAmount / element.itemDescArray.length).toFixed(2);
+                $.each(element.itemDescArray, function (index, ele) {
+                    $('<p><span class="fr price">¥' + price + '</span>' + ele + '</p>').appendTo($col);
+                });
+            } else {
+                $('<p><span class="fr price">¥' + element.totalAmount + '</span></p>').appendTo($col);
+            }
+            $row.append($col);
+            $serviceTable.append($row);
+        });
+        //取送车信息
+        if (detail.pickupInfo) {
+            $("#takeAddress").text(detail.pickupInfo.pickupAddress || " ");
+            $("#takeTime").text(detail.pickupInfo.pickupTime || " ");
+            $("#sendAddress").text(detail.pickupInfo.sendAddress || " ");
+        } else {
+            $("#pickupInfo").hide();
+        }
+        //联系人信息
+        $("#contactsName").text(detail.contactsInfo.contactsName || " ");
+        $("#contactsPhone").text(detail.contactsInfo.contactsPhone || " ");
+    })(orderDetailData);
+
+    //更新订单状态，页面加载完之后调用
+    function updateOrderState() {
+        if (orderDetailData.isPaid) {
+            $("#serviceCode").css("display", "table-row");
+            $(".page").addClass("hasPaid");
+        } else {
+            $("#serviceCode").css("display", "none");
+            $(".page").removeClass("hasPaid");
+        }
+    }
+    //点击订单详情【去付款按钮】
+    $("#payBtn").on("tap", function () {
+        if (window.fromiOS) {
+            gotoPayment(orderDetailData.orderInfo);
+        }
+        if (window.fromAndroid) {
+            window.fromAndroid.gotoPayment(JSON.stringify(orderDetailData.orderInfo));
+        }
+    });
+
+    //服务网点
+    (function () {
+        var $serviceNetwork = $("#serviceNetwork");
+        if (orderDetailData.serviceNetwork) {
+            $.each(orderDetailData.serviceNetwork, function (index, item) {
+                $('<p class="network-name">• '+ item.shopName + '</p>' +
+                        '<p class="network-address">地址：' + item.shopAddress + '</p>' +
+                        '<a class="network-address" href="tel:' + item.shopPhone + '">电话：' + item.shopPhone + '</a>').appendTo($serviceNetwork);
+            });
+        } else {
+            $serviceNetwork.prev().hide();
+            $serviceNetwork.hide();
+        }
+    })();
+</script>
+</body>
+</html>
